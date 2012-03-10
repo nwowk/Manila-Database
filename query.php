@@ -10,18 +10,40 @@ require 'includes/header.ssi';
 
 if ( isset($_POST['district'])) {
 	$district = mysql_real_escape_string($_POST['district']);
-	$query = "SELECT * FROM households WHERE district=$district";
+	$query = "SELECT district, COUNT(1) as 'households', 
+		SUM(stories), AVG(stories), 
+		SUM(HHLDsize) as 'population', AVG(HHLDsize),
+		SUM(females), AVG(HOHage)
+		FROM households 
+		WHERE HHLDsize > 0 AND district='$district'
+		GROUP BY district";
 	$result = mysql_query($query);
 	if ( $result == FALSE ) {
-        	$_SESSION['error'] = 'No data for the district you entered.';
-        	return;
-		}
-//This part is where we calculate all the general stats for the district.
-	$hhlds = mysql_num_rows($result);
-
-//display profile information
-	echo ('<h2>Profile for District '.$district.':</h2>');
-	echo ('<p>There are '.$hhlds.' household entries in this district.</p>');
+    		$_SESSION['error'] = 'Bad value for id';
+    		header( 'Location: query.php' ) ;
+    		return;
+	}
+	echo '<table border="1"><tr>
+		<th>District</th>
+		<th>Households</th>
+		<th>Population</th>
+		<th>AVG Household Size</th>
+		<th>% Female</th>
+		<th>AVG HoH Age</th>
+		<th>AVG Stories</th>
+		<th>SUM stories</th>
+		</tr>';
+while($row = mysql_fetch_array($result)){
+	echo "<tr><td>". $row['district']. 
+	"</td><td>". $row['households'].
+	"</td><td>". $row['population'].
+	"</td><td>". $row['AVG(HHLDsize)'].
+	"</td><td>". ($row['SUM(females)']/$row['population']*100).
+	"</td><td>". $row['AVG(HOHage)'].
+	"</td><td>". $row['AVG(stories)'].
+	"</td><td>". ($row['SUM(stories)']/$row['households']).
+	"</td></tr>";
+}
 }
 if ( isset($_POST['project'])) {
 	$query = 'SELECT district, COUNT(1) as "households", 
