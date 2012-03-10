@@ -22,12 +22,36 @@ if ( isset($_POST['district'])) {
 //display profile information
 	echo ('<h2>Profile for District '.$district.':</h2>');
 	echo ('<p>There are '.$hhlds.' household entries in this district.</p>');
-
-	$query = 'SELECT district, SUM(stories) FROM households GROUP BY district';
+}
+if ( isset($_POST['project'])) {
+	$query = 'SELECT district, COUNT(1) as "households", 
+		SUM(stories), AVG(stories), 
+		SUM(HHLDsize) as "population", AVG(HHLDsize),
+		SUM(females), AVG(HOHage)
+		FROM households 
+		WHERE HHLDsize > 0
+		GROUP BY district';
 	$result = mysql_query($query);
+	echo '<table border="1"><tr>
+		<th>District</th>
+		<th>Households</th>
+		<th>Population</th>
+		<th>AVG Household Size</th>
+		<th>% Female</th>
+		<th>AVG HoH Age</th>
+		<th>AVG Stories</th>
+		<th>SUM stories</th>
+		</tr>';
 while($row = mysql_fetch_array($result)){
-	echo "District ". $row['district']. " has ". $row['SUM(stories)']." stories.";
-	echo "<br />";
+	echo "<tr><td>". $row['district']. 
+	"</td><td>". $row['households'].
+	"</td><td>". $row['population'].
+	"</td><td>". $row['AVG(HHLDsize)'].
+	"</td><td>". ($row['SUM(females)']/$row['population']*100).
+	"</td><td>". $row['AVG(HOHage)'].
+	"</td><td>". $row['AVG(stories)'].
+	"</td><td>". ($row['SUM(stories)']/$row['households']).
+	"</td></tr>";
 }
 }
 ?>
@@ -39,6 +63,12 @@ while($row = mysql_fetch_array($result)){
 <form method="post">
 <p>For which district would you like a profile?
 <input type="text" name="district">
+<input type="submit" value="Go"/>
+</form>
+<br>
+<form method="post">
+<p>Get all districts.
+<input type="hidden" name="project" value="all">
 <input type="submit" value="Go"/>
 </form>
 </body>
