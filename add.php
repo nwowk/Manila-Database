@@ -1,3 +1,8 @@
+<?php
+require_once "db.php";
+session_start();
+require 'includes/header.ssi';
+?>
 <!DOCTYPE html> 
 <html> 
   <head> 
@@ -12,11 +17,6 @@
 	   height: 500px
 	  }
 </style>
-<?php
-require_once "db.php";
-session_start();
-require 'includes/header.ssi';
-?>
     <script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyApkROPBq0A2ouQEFyaSm_xQi0BrENUC20&sensor=false">
     </script>
