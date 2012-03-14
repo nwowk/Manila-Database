@@ -1,3 +1,7 @@
+<?php
+require_once "db.php";
+session_start();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,10 +14,8 @@
 </head>
 <body id="home">
 <h1>Edit Record</h1>
-<?php
-require_once "db.php";
-session_start();
 
+<?php
 if ( isset($_POST['district']) && isset($_POST['date']) 
      && isset($_POST['lat']) && isset($_POST['lon']) 
      && isset($_POST['buildingtype_id']) && isset($_POST['stories']) 
