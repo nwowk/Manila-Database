@@ -108,6 +108,8 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
 }
 ?>
 <!--This part is the form where users can enter household information.-->
+
+
 <h1>Add a household to the database.</h1>
 <table width="100%" border="0">
 <tr>
@@ -116,7 +118,7 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
 <td style="width: 50%;text-align:top;">
 <p>All fields are required unless otherwise indicated. </p>
 <form name = "add" action="add.php" onsubmit="return validateform();" method="post">
-<table>
+<table border="1">
 <tr>
 <td width="50%">What is the district ID?</td>
 <td width="50%"><input type="text" name="district"></td></tr> 
@@ -125,72 +127,87 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
 <tr><td>Longitude (optional):</td>
 <td><input type="text" name="lon"></td></tr>
 <tr><td>What is the building type? Choose one from the following list:</td>
-<td><select name="buildingtype_id">
-<option value="1">Wooden walls/concrete floor</option>
-<option value="2">Concrete or masonry construction</option>
-<option value="3">Wood and metal, dirt floor</option>
-<option value="4">Mixed materials</option></p>
-</select></td></tr>
+<td>
+<input type="radio" name="buildingtype_id" value="1">Light materials</br>
+<input type="radio" name="buildingtype_id" value="2">Semi-concrete</br>
+<input type="radio" name="buildingtype_id" value="3">All concrete</br>
+</td></tr>
 <tr><td>How many stories does the building have?</td>
 <td><input type="text" name="stories"></td></tr>
-<tr><td>Has the building been elevated from the ground through the use of stilts, cinder blocks, or some other platform?</td>
-<td><select name="raised">
-<option value="Y">Yes</option>
-<option value="N">No</option>
-</select></td></tr>
-<tr><td>How many people are a part of this household?</td>
+<tr><td>Has the building been elevated or raised up from the ground?</td>
+<td>
+<input type="radio" name="raised_id" value="0">No</br>
+<input type="radio" name="raised_id" value="1">Yes, with a concrete slab</br>
+<input type="radio" name="raised_id" value="2">Yes, with bamboo</br>
+<input type="radio" name="raised_id" value="3">Yes, with wood</br>
+<input type="radio" name="raised_id" value="4">Yes, with a steel platform</br>
+<input type="radio" name="raised_id" value="5">Yes, with cinder blocks</br>
+<input type="radio" name="raised_id" value="6">Yes, with something else not listed here</br>
+</td></tr>
+<tr><td>What is the roof made of?</td>
+<td>
+<input type="radio" name="roof_id" value="1">Concrete</br>
+<input type="radio" name="roof_id" value="2">Light Materials</br>
+<input type="radio" name="roof_id" value="3">Metal</br>
+<input type="radio" name="roof_id" value="4">Mixed</br>
+</td></tr>
+<tr><td>How many people live in this house?</td>
 <td><input type="text" name="HHLDsize"></td></tr>
 <tr><td>How many people are under the age of 6?</td>
-<td><input type="text" name="age1"></td></tr>
-<tr><td>How many people are between the ages of 6 and 15, inclusive?</td>
-<td><input type="text" name="age2"></p></td></tr>
-<tr><td>How many people are between the ages of 16 ond 35, inclusive?</td>
-<td><input type="text" name="age3"></td></tr>
-<tr><td>How many people are between the ages of 36 ond 60, inclusive?</td>
-<td><input type="text" name="age4"></p></td></tr>
+<td><input type="text" name="young"></td></tr>
 <tr><td>How many people are over the age of 60?</td>
-<td><input type="text" name="age5"></td>
-<tr><td>Of the people in your household, how many are females?</td>
-<td><input type="text" name="females"></td></tr>
-<tr><td>What is your estimated household income PER MONTH? (optional)</td>
-<td><input type="text" name="income"></td></tr>
-<tr><td>What has your household done to prepare for disaster? If more than one, choose the one you think is most important.</td>
+<td><input type="text" name="old"></td>
+<tr><td>How many adults in your household need help dressing, eating, or moving around?</td>
+<td><input type="text" name="dependents"></td></tr>
+<tr><td>What is your estimated household income PER MONTH?</td>
 <td>
-<input type="radio" name="prepare" value="Participated in an early warning system or other emergency drill">
-Participated in an early warning system or other emergency drill</br>
-<input type="radio" name="prepare" value="Participated in a community mapping session or other non-drill disaster related education">
-Participated in a community mapping session or other non-drill disaster related education</br>
-<input type="radio" name="prepare" value="Option 3">
-Option 3 goes here</br>
-<input type="radio" name="prepare" value="Option 4">
-Option 4 goes here</br>
-<input type="radio" name="prepare" value="Option 5">
-<option value="5">Option 5 goes here</br>
-</select></td></tr>
-<tr><td>Is your household an active member of any of these organizations? Again, choose the one you most often visit or participate in. </td>
-<td><select name="ngo_id">
-<option value="1">Buklod Tao</option>
-<option value="2">Tao Pilipinas</option>
-<option value="3">Center for Disaster Preparedness</option>
-<option value="4">NGO 4</option>
-<option value="5">NGO 5</option>
-</select></td></tr>
+<input type="radio" name="income_id" value="1">0-4,999 pesos</br>
+<input type="radio" name="income_id" value="2">5,000-9,999 pesos</br>
+<input type="radio" name="income_id" value="3">10,000-14,999 pesos</br>
+<input type="radio" name="income_id" value="4">15,000-19,999 pesos</br>
+<input type="radio" name="income_id" value="5">20,000 and above</br>
+<input type="radio" name="income_id" value="6">Don't know or no answer</br>
+</td></tr>
+<tr><td>Are you aware of whether your community organization has a disaster evacuation plan?</td>
+<td>
+<input type="radio" name="evacuation" value="1">Yes, I am aware</br>
+<input type="radio" name="evacuation" value="0">No, I do not know</br>
+</td></tr>
+<tr><td>Have you ever participated in any disaster preparation training?</td>
+<td>
+<input type="radio" name="training" value="1">Yes</br>
+<input type="radio" name="training" value="0">No</br>
+</td></tr>
+<tr><td>How does your household dispose of waste?</td>
+<td>
+<input type="radio" name="waste_id" value="1">garbage collector</br>
+<input type="radio" name="waste_id" value="2">burning</br>
+<input type="radio" name="waste_id" value="3">dumping in a public place</br>
+<input type="radio" name="waste_id" value="4">dumping in water or vicinity</br>
+</td></tr>
+<tr><td>What is your primary source of water?</td>
+<td>
+<input type="radio" name="water_id" value="1">communal well</br>
+<input type="radio" name="water_id" value="2">private faucet</br>
+<input type="radio" name="water_id" value="3">river/stream</br>
+<input type="radio" name="water_id" value="4">communal water pipe</br>
+<input type="radio" name="water_id" value="5">private water seller</br>
+<input type="radio" name="water_id" value="6">other</br>
+</td></tr>
 <tr><td>What is the best way to get your attention during a crisis?</td>
-<td><select name="contact_id">
-<option value="1">sms/text</option>
-<option value="2">email/facebook</option>
-<option value="3">radio</option>
-<option value="4">TV</option>
-</select></td></tr>
+<td>
+<input type="radio" name="contact_id" value="1">sms/text</br>
+<input type="radio" name="contact_id" value="2">email/facebook</br>
+<input type="radio" name="contact_id" value="3">radio</br>
+<input type="radio" name="contact_id" value="4">TV</br>
+</td></tr>
 <tr><td>What is the gender of the head of household? [offer definition]</td>
-<td><select name="HOHgender">
-<option value="M">Male</option>
-<option value="F">Female</option>
-</select></td></tr>
+<td>
+<input type="radio" name="HOHgender" value="0">male</br>
+<input type="radio" name="HOHgender" value="1">female</br>
+</td></tr>
 <tr><td>What is the age of the head of household?</td>
 <td><input type="text" name="HOHage"></td></tr>
-<tr><td>Of the adults in your household, that is, everyone older than 16, how many of them are dependent? That is, they are unable to earn income because of a physical or mental disability or age.</td>
-<td><input type="text" name="dependents"></td></tr>
 <tr><td><input type="submit" value="Add New"/></td>
 <td><a href="add.php">Cancel</a></td></tr></table>
 </form>

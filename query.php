@@ -80,8 +80,7 @@ while($row = mysql_fetch_array($result)){
 </head>
 <body id="home">
 <h1>Search</h1>
-<p>This page will have functionalities to query the database, but is not complete at this time.
-    We hope to allow a variety of queries that allow multiple options for display of data.</p>
+<p>Choose your query below. </p>
 <form method="post">
 <p>For which district would you like a profile?
 <input type="text" name="district">
