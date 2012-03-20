@@ -28,7 +28,7 @@ if ( isset($_SESSION ['name']) )
 }
 else 
 {
-	echo '<h1>Please Login</h1>';
+	 header('Location: login.php');
 }
 ?>
 </body>
