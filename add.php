@@ -1,7 +1,7 @@
 <?php
-session_start();
 require_once "db.php";
-//require 'guard.php';
+session_start();
+require 'includes/guardgeneral.ssi';
 require 'includes/header.ssi';
 ?>
 <!DOCTYPE html> 
@@ -208,8 +208,8 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
 </td></tr>
 <tr><td>What is the age of the head of household?</td>
 <td><input type="text" name="HOHage"></td></tr>
-<tr><td><input type="submit" value="Add New"/></td>
-<td><a href="add.php">Cancel</a></td></tr></table>
+<tr><td><a href="add.php">Cancel</a></td>
+<td><input type="submit" value="Add New"/></td></tr></table>
 </form>
 </td>
 <td><div id="map_canvas" style="width:100% height:100%"></div></td>
