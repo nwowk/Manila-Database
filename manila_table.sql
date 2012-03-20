@@ -46,7 +46,6 @@ CREATE TABLE IF NOT EXISTS `households` (
   `HOHage` tinyint(110) NOT NULL,
   `users_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FULLTEXT KEY `raised` (`raised_id`,`HOHgender`)
 ) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `raised` (
