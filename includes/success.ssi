@@ -1,0 +1,31 @@
+<?php
+if ( isset($_SESSION ['name']) ) 
+{
+	$yourname = $_SESSION['name'];
+	$yourrole = $_SESSION['role'];
+	if ($yourrole == "1")
+	{
+	echo "<p>Welcome ".htmlentities($yourname)."</br>";
+	echo "Your are role 1</p>";
+	echo('<p align="right"><a href="logout.php">Logout</a></p>'."\n");
+	}
+	if ($yourrole == "2")
+	{
+	echo "<p>Welcome ".htmlentities($yourname)."</br>";
+	echo "Your are role 2</p>";
+	echo('<p align="right"><a href="logout.php">Logout</a></p>'."\n");
+	}
+	if ($yourrole == "3")
+	{
+	echo "<p>Welcome ".htmlentities($yourname)."</br>";
+	echo "Your are role 3</p>";
+	echo('<p align="right"><a href="logout.php">Logout</a></p>'."\n");
+	}
+}
+else 
+{
+	echo ' '; 
+}
+
+?>
+

@@ -55,27 +55,26 @@ h3{
 	height:70px;
 	}
 #logo{
+	vertical-align:bottom;
 	margin-left:5px;
 	width:80px;
 	height:80px;
 	float:left;
 	}
-#header iframe{
-	float:right;
-	vertical-align:top;
-	height:80px;
-	border: 0px;
-}
-#header p{
+#header h1{
 	margin-top:45px;
 	letter-spacing:.75px;
 	font-size:x-large;
 	font-color:#000;
 	}
-#login{
+#logout{
+	vertical-align:top;
 	float:right;
 	width:100px;
 	height:50px;
+	letter-spacing:0px;
+	font-size:x-small;
+	font-color:#000;
 	}
 #body_nav{
 	padding:0 0 0 0;

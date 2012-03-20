@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `households` (
   `HOHage` tinyint(110) NOT NULL,
   `users_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FULLTEXT KEY `raised` (`raised`,`HOHgender`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+  FULLTEXT KEY `raised` (`raised_id`,`HOHgender`)
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `raised` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `lname`, `role`, `email`, `password`) VALUES
 (1, 'Kaarin', 'Hoff', 3, 'kaarin.hoff@gmail.com', 'superadmin'),
-(3, 'Fname', 'Lname', 1, 'testemail', NULL),
+(3, 'Fname', 'Lname', 1, 'testemail', 1),
 (4, 'Olivia', 'Lau', 3, 'olau@umich.edu', 'si572');
 
 -- --------------------------------------------------------

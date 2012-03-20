@@ -1,13 +1,13 @@
 <?php
-session_start();
 require_once "db.php";
+session_start();
+require 'includes/guard3.ssi';
+require 'includes/header.ssi';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<?php
-require 'includes/header.ssi';
-?>
+
 </head>
 <body  id="home">
 <h1>Delete Project</h1>

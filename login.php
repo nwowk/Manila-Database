@@ -1,6 +1,15 @@
 <?php
-session_start();
 require_once "db.php";
+session_start();
+require 'includes/header.ssi';
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body  id="home">
+<?php
 
 if ( isset($_POST['email']) && isset($_POST['password']) ) 
 {
@@ -26,13 +35,13 @@ if ( isset($_POST['email']) && isset($_POST['password']) )
 	{
 		$row = mysql_fetch_row($result);
 		$_SESSION ['name'] = $row[0];
-		header ( 'Location: success.php'); 
+		header ( 'Location: add.php'); 
 	}
 	return;
 }
 if ( isset($_SESSION ['name']) ) 
 {
-	header ( 'Location: success.php'); 
+	header ( 'Location: add.php'); 
 }
 
 
@@ -45,3 +54,5 @@ if ( isset($_SESSION ['name']) )
 <tr><td><input type="submit" value="Login"/></td>
 <td><a href="index.php">Refresh</a></td></tr></table>
 </form>
+</body>
+</html>

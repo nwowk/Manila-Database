@@ -3,10 +3,12 @@
 <?php
 require_once "db.php";
 session_start();
+require 'includes/guard23.ssi';
+require 'includes/header.ssi';
 ?>
 <head>
 <?php
-require 'includes/header.ssi';
+
 
 if ( isset($_POST['district'])) {
 	$district = mysql_real_escape_string($_POST['district']);

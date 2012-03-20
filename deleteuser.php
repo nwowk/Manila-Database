@@ -3,11 +3,11 @@
 <?php
 require_once "db.php";
 session_start();
-?>
-<head>
-<?php
+require 'includes/guard3.ssi';
 require 'includes/header.ssi';
 ?>
+<head>
+
 </head>
 <body  id="home">
 <h1>Delete User</h1>

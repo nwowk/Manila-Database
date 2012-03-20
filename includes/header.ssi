@@ -6,9 +6,15 @@
 <div id="header">
 <a name="top"></a>
   <div id="logo"><img src="images/cdp.jpg" width="70px"/></div>
-	<p>Manila Database
-	  <iframe src="login.php"></iframe>      	</p>
-	
+	<h1>Manila Database
+<?php
+{ ?>
+	<div id='logout'>
+	<?php require 'includes/success.ssi';?>
+	</div>
+	<?php }
+?>
+	</h1>
 </div>
 <div id="body_nav">
 <ol id="main_nav">
@@ -23,6 +29,7 @@ if ( isset($_SESSION ['name']) )
 	?>
 		<li class='nav'><a href='index.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
+		<li class='nav'><a href='man.php'>View Projects</a></li>
 	<?php
 		}
 		if ($yourrole == "2")

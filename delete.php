@@ -1,6 +1,8 @@
 <?php
 require_once "db.php";
 session_start();
+require 'includes/guard23.ssi';
+require 'includes/header.ssi';
 
 //If the user has selected a valid id, this part deletes that record.
 if ( isset($_POST['delete']) && isset($_POST['id']) ) {
