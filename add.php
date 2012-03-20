@@ -2,53 +2,7 @@
 require_once "db.php";
 session_start();
 require 'includes/guardgeneral.ssi';
-require 'includes/header.ssi';
-?>
-<!DOCTYPE html> 
-<html> 
-  <head> 
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
-    
-<title>Manila Database</title>
-<link href="main.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-          #map_canvas 
-	  { 
-	   width: 90%;
-	   height: 500px
-	  }
-</style>
-    <script type="text/javascript"
-      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyApkROPBq0A2ouQEFyaSm_xQi0BrENUC20&sensor=false">
-    </script>
-    <script type="text/javascript">
-      function initialize() {
-        var myOptions = {
-          center: new google.maps.LatLng(14.671171,121.110851),
-          zoom: 18,
-          mapTypeId: google.maps.MapTypeId.HYBRID
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
-		var layer = new google.maps.FusionTablesLayer({
-			query: {
-				select: 'geometry',
-				from: '3024596'
-			}
-		});
-		layer.setMap(map);	
-      }
 
-      function validateForm() {
-	var a=document.forms["add"]["district"].value;
-	if (a==null || a=="") {
-		alert("First district id must be filled out");
-  		return false;
-  	}
-	return true;
-	}
-    </script> 
-<?php
 /* This page successfully adds the form to the database. however, the input checks do not work
  (numeric and required fields)
 */
@@ -106,7 +60,54 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
    header( 'Location: verify.php' ) ;
    return;	
 }
+require 'includes/header.ssi';
 ?>
+
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+    
+<title>Manila Database</title>
+<link href="main.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+          #map_canvas 
+	  { 
+	   width: 90%;
+	   height: 500px
+	  }
+</style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyApkROPBq0A2ouQEFyaSm_xQi0BrENUC20&sensor=false">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var myOptions = {
+          center: new google.maps.LatLng(14.671171,121.110851),
+          zoom: 18,
+          mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+		var layer = new google.maps.FusionTablesLayer({
+			query: {
+				select: 'geometry',
+				from: '3024596'
+			}
+		});
+		layer.setMap(map);	
+      }
+
+      function validateForm() {
+	var a=document.forms["add"]["district"].value;
+	if (a==null || a=="") {
+		alert("First district id must be filled out");
+  		return false;
+  	}
+	return true;
+	}
+    </script> 
+
 <!--This part is the form where users can enter household information.-->
 
 

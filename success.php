@@ -1,19 +1,7 @@
 <?php
 session_start();
 require_once "db.php";
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta name="verify-v1" content="3MgGfMT/t0qC3+Qf9+cNxGNU8ehk9JEfhDHIdhQEQu4=" />
-<title>Manila Database</title>
-<link href="main.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-</style>
-</head>
-<body id="home">
-<?php
+
 
 if ( isset($_SESSION ['name']) ) 
 {
@@ -44,6 +32,18 @@ else
 }
 
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="verify-v1" content="3MgGfMT/t0qC3+Qf9+cNxGNU8ehk9JEfhDHIdhQEQu4=" />
+<title>Manila Database</title>
+<link href="main.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+</style>
+</head>
+<body id="home">
+
 </body>
 </html>
 

@@ -34,11 +34,11 @@ if ( isset($_POST['name']) && isset($_POST['lname'])
 		return;}
 }
 
-if ( ! isset($_GET['id']) ) {
+/*if ( ! isset($_GET['id']) ) {
     $_SESSION['error'] = 'Please try again';
     header('Location: manageusers.php');
-    return;
-}
+    return; 
+}*/
 $id = mysql_real_escape_string($_GET['id']);
 $result = mysql_query("SELECT name, lname, email, role, id 
     FROM users WHERE id='$id'");

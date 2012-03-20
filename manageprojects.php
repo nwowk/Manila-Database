@@ -13,6 +13,16 @@ require 'includes/header.ssi';
 <h1>Manage Projects</h1>
 
 <?php
+
+if ( isset($_SESSION['error']) ) {
+    echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
+    unset($_SESSION['error']);
+}
+if ( isset($_SESSION['success']) ) {
+    echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
+    unset($_SESSION['success']);
+}
+
 $result = mysql_query("SELECT number, name, description, id FROM projects");
 ?>
 <table border="1"><tr>
@@ -39,6 +49,14 @@ while ( $row = mysql_fetch_row($result) ) {
 }
 	echo("</table>");
 
+if ( isset($_SESSION['error']) ) {
+    echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
+    unset($_SESSION['error']);
+}
+if ( isset($_SESSION['success']) ) {
+    echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
+    unset($_SESSION['success']);
+}
 ?>
 <h2><a href="addproject.php">Add New Project</a></h2>
 </body>

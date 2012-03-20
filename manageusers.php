@@ -35,9 +35,9 @@ while ( $row = mysql_fetch_row($result) ) {
     echo("</td><td>");
     echo(htmlentities($row[3]));
     echo("</td><td>");
-	echo('<a href="edituser.php?id='.htmlentities($row[4]).'">Edit</a>');
+	echo('<a href="edituser.php?id='.htmlentities($row[5]).'">Edit</a>');
 	echo("</td><td>");
-	echo('<a href="deleteuser.php?id='.htmlentities($row[4]).'">Delete</a>');
+	echo('<a href="deleteuser.php?id='.htmlentities($row[5]).'">Delete</a>');
 	echo("</td></tr>");
 }
 	echo("</table>");

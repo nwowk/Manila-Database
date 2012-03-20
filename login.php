@@ -1,15 +1,6 @@
 <?php
 require_once "db.php";
 session_start();
-require 'includes/header.ssi';
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-
-</head>
-<body  id="home">
-<?php
 
 if ( isset($_POST['email']) && isset($_POST['password']) ) 
 {
@@ -17,7 +8,6 @@ if ( isset($_POST['email']) && isset($_POST['password']) )
 	$p = mysql_real_escape_string ($_POST['password']);
 	$sql = "SELECT name FROM users
 			WHERE email = '$e' AND password = '$p'";
-	echo "<!--\n$sql\n-->\n";
 	$result = mysql_query ($sql);
 	
 	$sqltwo = "SELECT role FROM users
@@ -44,8 +34,16 @@ if ( isset($_SESSION ['name']) )
 	header ( 'Location: add.php'); 
 }
 
-
+require 'includes/header.ssi';
 ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body  id="home">
+
 <h2>Login</h2>
 <form method="post">
 <table>

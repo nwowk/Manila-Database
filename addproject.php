@@ -2,16 +2,8 @@
 require_once "db.php";
 session_start();
 require 'includes/guard23.ssi';
-require 'includes/header.ssi';
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
 
-</head>
-<body  id="home">
-<h1>Add Project</h1>
-<?php
+
 if ( isset($_POST['number']) && isset($_POST['name']) 
 	&& isset($_POST['description'])) 
 	{
@@ -31,7 +23,18 @@ if ( isset($_POST['number']) && isset($_POST['name'])
 		return;}
 */        
 }
+require 'includes/header.ssi';
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body  id="home">
+<h1>Add Project</h1>
+
+
+
 <form method="post">
 <table>
 <tr><td>Project Number:</td><td> <input type="text" name="number"/></td></tr>
