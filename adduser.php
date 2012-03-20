@@ -38,7 +38,7 @@ if ( isset($_POST['name']) && isset($_POST['lname'])
 <tr><td>First Name:</td><td> <input type="text" name="name"></td></tr>
 <tr><td>Last Name:</td><td> <input type="text" name="lname"></td></tr>
 <tr><td>Email:</td><td> <input type="text" name="email"></td></tr>
-<tr><td>Password:</td><td> <input type="text" name="password"></td></tr>
+<tr><td>Password:</td><td> <input type="password" name="password"></td></tr>
 <tr><td>Access Level:</td><td> <input type="text" name="role"></td></tr>
 <tr><td><a href="manageusers.php">Cancel</a></td>
 	<td align="right"><input type="submit" value="Add New"/></td></tr>
