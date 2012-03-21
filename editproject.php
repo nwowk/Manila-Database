@@ -43,17 +43,21 @@ $a = htmlentities($row[0]);
 $b = htmlentities($row[1]);
 $c = htmlentities($row[2]);
 
-echo <<< _END
+require 'includes/header.ssi';
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-<?php
+
 </head>
 <body  id="home">
 <h1>Edit Project</h1>
 
+<?php
+echo <<< _END
 <form method="post">
 <p>Project Number:
 <input type="text" name="number" value="$a"></p>
