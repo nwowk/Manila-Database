@@ -15,7 +15,6 @@
 	<?php }
 ?>
 	</h1>
-</div>
 <div id="body_nav">
 <ol id="main_nav">
 <?php
@@ -61,6 +60,10 @@ else {
 }
 ?>
 </ol>
-</div><!--body_nav--> 
+</div></div>
+</div> <!--header-->
+<div id="space"></div>
+
+<!--body_nav--> 
 
 

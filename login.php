@@ -46,11 +46,10 @@ require 'includes/header.ssi';
 
 <h2>Login</h2>
 <form method="post">
-<table>
+<table class="small">
 <tr><td><b>Email:</b></td><td> <input type="text" name="email"></td></tr>
 <tr><td><b>Password:</b></td><td><input type="password" name ="password"></td><tr>
-<tr><td><input type="submit" value="Login"/></td>
-<td><a href="index.php">Refresh</a></td></tr></table>
+<tr><td></td><td><input type="submit" value="Login"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php">Refresh</a></td></tr></table>
 </form>
 </body>
 </html>

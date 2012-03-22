@@ -1,17 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
 <?php
 require_once "db.php";
 session_start();
 require 'includes/guard3.ssi';
-require 'includes/header.ssi';
-?>
-<head>
 
-</head>
-<body  id="home">
-<h1>Edit User</h1>
-<?php
 if ( isset($_POST['name']) && isset($_POST['lname']) 
 	&& isset($_POST['email']) && isset($_POST['role']) 
 	&& isset($_POST['id']) ) 
@@ -39,6 +30,7 @@ if ( isset($_POST['name']) && isset($_POST['lname'])
     header('Location: manageusers.php');
     return; 
 }*/
+
 $id = mysql_real_escape_string($_GET['id']);
 $result = mysql_query("SELECT name, lname, email, role, id 
     FROM users WHERE id='$id'");
@@ -53,8 +45,20 @@ $b = htmlentities($row[1]);
 $c = htmlentities($row[2]);
 $d = htmlentities($row[3]);
 
-echo <<< _END
+require 'includes/header.ssi';
 
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+</head>
+<body  id="home">
+<h1>Edit User</h1>
+
+<?php
+echo <<< _END
 <form method="post">
 <p>First Name:
 <input type="text" name="name" value="$a"></p>

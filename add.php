@@ -8,7 +8,7 @@ require 'includes/guardgeneral.ssi';
 */
 ?>
 </head> 
-<body id="home" onload="initialize()">
+<body id="homewide" onload="initialize()">
 <?php
 //This part checks to see whether the form has been filled.
 if ( isset($_POST['district']) && isset($_POST['buildingtype_id']) 
@@ -71,13 +71,9 @@ require 'includes/header.ssi';
 <title>Manila Database</title>
 <link href="main.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-          #map_canvas 
-	  { 
-	   width: 90%;
-	   height: 500px
-	  }
+      
 </style>
-    <script type="text/javascript"
+   <div id="map"> <script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyApkROPBq0A2ouQEFyaSm_xQi0BrENUC20&sensor=false">
     </script>
     <script type="text/javascript">
@@ -106,20 +102,20 @@ require 'includes/header.ssi';
   	}
 	return true;
 	}
-    </script> 
+    </script> </div>
 
 <!--This part is the form where users can enter household information.-->
 
 
 <h1>Add a household to the database.</h1>
-<table width="100%" border="0">
+<table width="100%" border="0" class="float">
 <tr>
 <td colspan="2">
 <tr valign="top">
 <td style="width: 50%;text-align:top;">
 <p>All fields are required unless otherwise indicated. </p>
 <form name = "add" action="add.php" onsubmit="return validateform();" method="post">
-<table border="1">
+<table border="0">
 <tr>
 <td width="50%">What is the district ID?</td>
 <td width="50%"><input type="text" name="district"></td></tr> 

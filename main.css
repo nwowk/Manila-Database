@@ -9,7 +9,7 @@ body{
 	}
 a{
 	text-decoration:none;
-	color:#090;
+	color:#032631;
 	}
 a img {
 	border:0;
@@ -22,15 +22,22 @@ p{
 	text-align:left;
 	}
 table {
-	width: 785px;
+	width: 90%;
 	}
 table td{
 	vertical-align: top;
+	text-align: left;
+	}
+table.small {
+	width:50%;
+	}
+table.float {
+	width: 110%;
+	float:left;
 	}
 h1{
-	color:#333366;
+	color:#000;
 	font-size:2em;
-	padding: 45px 0 0 0;
 	}
 h2{
 	color:#333366;
@@ -50,38 +57,51 @@ h3{
 	margin-left:auto;
 	margin-right:auto;
 	}
+#homewide {
+	width: 800px;
+	margin-top:10px;
+	margin-left:auto;
+	margin-right:auto;
+	}
 #header{
-	width:785px;
-	height:70px;
+	width:100%;
+	height:90px;
+	background-color:#000;
 	}
 #logo{
-	vertical-align:bottom;
+	vertical-align:text-top;
 	margin-left:5px;
 	width:80px;
 	height:80px;
 	float:left;
 	}
 #header h1{
-	margin-top:45px;
-	letter-spacing:.75px;
+	padding: 1em 0 0 0;
+	letter-spacing:1.25px;
 	font-size:x-large;
-	font-color:#000;
+	color:#FFF;
 	}
 #logout{
-	vertical-align:top;
+	vertical-align:text-top;
 	float:right;
 	width:100px;
-	height:50px;
-	letter-spacing:0px;
 	font-size:x-small;
-	font-color:#000;
+	color:#FFF;
+	}
+#logout a {
+	color: #FFF;
+	text-decoration:none;
+	font-weight:bold;	
+	font-size:small;
+	}
+#space {
+	padding:0 0 2.5em 0;
 	}
 #body_nav{
-	padding:0 0 0 0;
-	width:785px;
+	width:100%;
 	margin: 0 0 0 0px;
-	background-color:#29923f;
 	float:left;
+	background-color:#000;
 	}
 #main_nav li{
 	display: inline; 
@@ -89,53 +109,40 @@ h3{
 	}
 .nav{/*between classes nav*/
 	font-size:18px;
-	font-variant: small-caps
+	font-variant: small-caps;
 	}
 .nav a{ /*a means link*/
 	font-size:15px;
 	color:#FFF;
 	text-decoration:none;
-	padding:.0em 1.25em .0em 1.25em;
+	padding:1.25em 1.25em 1.25em 1.25em;
 	letter-spacing:1.75px;
+	height: 28px;
+	width: 95px;
+	background-color:#29923f;
+	margin: 0px 2px 0px 2px;
+	text-decoration: none;
+	-moz-box-shadow: 2px -2px 7px #000;
+	-webkit-box-shadow: 2px -2px 7px #000;
+	box-shadow: 2px -2px 7px #000;
 	}
 .nav a:hover {
-	color:#FFF;
-	text-decoration:underline;
-	}
-.nav_active a{
 	font-size:15px;
-	color:#333366;
+	color:#032631;
 	background-color:#FFF;
 	text-decoration:none;
 	padding:1.25em 1.25em 1.25em 1.25em;
 	font-weight:bold;	
-	letter-spacing:1.5px;
-	}
-#body_undernav{
-	padding: 0 0 20px 0;
-	margin-bottom:20px;
-	}
-#main_text {
-	float:right;
-	width:76%;
-	margin-right:2%;
-	margin-top:15px;
-	padding:10px 0 0 0;
-	color:#333366;
-	line-height:1.5em;
-	}
-.photo_in_text{
-	margin:.25em 1em 1em 0;
-	height: 200px;
-	}
-#footer a{
-	color:#fff;
-	}
-.top{
-	font-variant: small-caps
+	letter-spacing:1.75px;
+	-moz-box-shadow: 1px -1px 5px #84D24A;
+	-webkit-box-shadow: 1px -1px 5px #84D24A;
+	box-shadow: 1px -1px 5px #84D24A;
 	}
 
-
+#map_canvas  {
+	width: 350px;
+	height: 350px;
+	}
 
 
 	
