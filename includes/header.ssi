@@ -5,7 +5,7 @@
 
 <div id="header">
 <a name="top"></a>
-  <div id="logo"><img src="images/cdp.jpg" width="70px"/></div>
+  <div id="logo"><img src="images/CDP3DLogo.jpg" width="170px"/></div>
 	<h1>Manila Database
 <?php
 { ?>
@@ -26,6 +26,9 @@ if ( isset($_SESSION ['name']) )
 		if ($yourrole == "1")
 		{
 	?>
+		<li class='nav'>&nbsp;</li>
+		<li class='nav'>&nbsp;</li>
+		<li class='nav'>&nbsp;</li>
 		<li class='nav'><a href='add.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
 		<li class='nav'><a href='man.php'>View Projects</a></li>
@@ -34,6 +37,9 @@ if ( isset($_SESSION ['name']) )
 		if ($yourrole == "2")
 		{
 	?>
+		<li class='nav'>&nbsp;</li>
+		<li class='nav'>&nbsp;</li>
+		<li class='nav'>&nbsp;</li>
 		<li class='nav'><a href='add.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
 		<li class='nav'><a href='query.php'>Query</a></li>
@@ -43,6 +49,9 @@ if ( isset($_SESSION ['name']) )
 		if ($yourrole == "3")
 		{
 	?>
+		<li class='nav'>&nbsp;</li>
+		<li class='nav'>&nbsp;</li>
+		<li class='nav'>&nbsp;</li>
 		<li class='nav'><a href='add.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
 		<li class='nav'><a href='query.php'>Query</a></li>
