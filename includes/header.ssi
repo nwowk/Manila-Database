@@ -26,9 +26,6 @@ if ( isset($_SESSION ['name']) )
 		if ($yourrole == "1")
 		{
 	?>
-		<li class='nav'>&nbsp;</li>
-		<li class='nav'>&nbsp;</li>
-		<li class='nav'>&nbsp;</li>
 		<li class='nav'><a href='add.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
 		<li class='nav'><a href='man.php'>View Projects</a></li>
@@ -37,9 +34,6 @@ if ( isset($_SESSION ['name']) )
 		if ($yourrole == "2")
 		{
 	?>
-		<li class='nav'>&nbsp;</li>
-		<li class='nav'>&nbsp;</li>
-		<li class='nav'>&nbsp;</li>
 		<li class='nav'><a href='add.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
 		<li class='nav'><a href='query.php'>Query</a></li>
@@ -49,9 +43,6 @@ if ( isset($_SESSION ['name']) )
 		if ($yourrole == "3")
 		{
 	?>
-		<li class='nav'>&nbsp;</li>
-		<li class='nav'>&nbsp;</li>
-		<li class='nav'>&nbsp;</li>
 		<li class='nav'><a href='add.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
 		<li class='nav'><a href='query.php'>Query</a></li>
