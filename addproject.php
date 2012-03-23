@@ -42,9 +42,9 @@ require 'includes/header.ssi';
 <div id='addproject_number_errorloc' class='error_strings'></div>
 <tr><td>Project Number:</td><td> <input type="text" name="number"/></td></tr>
 <tr><td>Project Name:</td><td> <input type="text" name="name"/></td></tr>
-<tr><td>Project Description:</td><td> <input type="text" name="description"/></td></tr>
-<tr><td><a href="manageprojects.php">Cancel</a></td>
-	<td align="right"><input type="submit" value="Add New"/></td></tr>
+<tr><td>Project Description:</td><td> <textarea type="text" name="description" rows="6"></textarea></td></tr>
+<tr><td></td>
+	<td align="right"><input type="submit" value="Add New"/>&nbsp;&nbsp;&nbsp;<a href="manageprojects.php">Cancel</a></td></tr>
 </table>
 </form>
 

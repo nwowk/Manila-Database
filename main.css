@@ -7,32 +7,32 @@ body{
 	font:small "arial narrow," arial, times new roman;
 	text-align:left;
 	}
-a{
+a {
 	text-decoration:none;
-	color:#032631;
+	color:#29923f;
 	}
 a img {
 	border:0;
 	}
 p a{
 	text-decoration:underline;
-}
+	color:#29923f;
+	}
 p{
 	margin:0 0 1em;
 	text-align:left;
 	}
 table {
-	width: 90%;
+	width: 430px;
 	}
 table td{
 	vertical-align: top;
 	text-align: left;
 	}
 table.small {
-	width:50%;
+	width:200px;
 	}
 table.float {
-	width: 110%;
 	float:left;
 	}
 h1{
@@ -58,13 +58,13 @@ h3{
 	margin-right:auto;
 	}
 #homewide {
-	width: 800px;
+	width: 780px;
 	margin-top:10px;
 	margin-left:auto;
 	margin-right:auto;
 	}
 #header{
-	width:100%;
+	width:785px;
 	height:90px;
 	background-color:#000;
 	}
@@ -128,7 +128,7 @@ h3{
 	}
 .nav a:hover {
 	font-size:15px;
-	color:#032631;
+	color: #032631;
 	background-color:#FFF;
 	text-decoration:none;
 	padding:1.25em 1.25em 1.25em 1.25em;
@@ -143,6 +143,7 @@ h3{
 	width: 350px;
 	height: 350px;
 	}
-
-
+#addproject_number_errorloc{
+	color: red;
+	}
 	
