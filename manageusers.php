@@ -13,6 +13,15 @@ require 'includes/header.ssi';
 <h1>Manage Users</h1>
 
 <?php
+if ( isset($_SESSION['error']) ) {
+    echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
+    unset($_SESSION['error']);
+}
+if ( isset($_SESSION['success']) ) {
+    echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
+    unset($_SESSION['success']);
+}
+
 $result = mysql_query("SELECT name, lname, email, password, role, id FROM users");
 ?>
 <table border="1"><tr>
@@ -33,7 +42,7 @@ while ( $row = mysql_fetch_row($result) ) {
     echo("</td><td>");
 	echo(htmlentities($row[2]));
     echo("</td><td>");
-    echo(htmlentities($row[3]));
+    echo(htmlentities($row[4]));
     echo("</td><td>");
 	echo('<a href="edituser.php?id='.htmlentities($row[5]).'">Edit</a>');
 	echo("</td><td>");
@@ -42,6 +51,14 @@ while ( $row = mysql_fetch_row($result) ) {
 }
 	echo("</table>");
 
+if ( isset($_SESSION['error']) ) {
+    echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
+    unset($_SESSION['error']);
+}
+if ( isset($_SESSION['success']) ) {
+    echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
+    unset($_SESSION['success']);
+}
 ?>
 <h2><a href="adduser.php">Add New User</a></h2>
 </body>

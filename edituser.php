@@ -25,12 +25,6 @@ if ( isset($_POST['name']) && isset($_POST['lname'])
 		return;}
 }
 
-/*if ( ! isset($_GET['id']) ) {
-    $_SESSION['error'] = 'Please try again';
-    header('Location: manageusers.php');
-    return; 
-}*/
-
 $id = mysql_real_escape_string($_GET['id']);
 $result = mysql_query("SELECT name, lname, email, role, id 
     FROM users WHERE id='$id'");
@@ -46,7 +40,6 @@ $c = htmlentities($row[2]);
 $d = htmlentities($row[3]);
 
 require 'includes/header.ssi';
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -59,6 +52,7 @@ require 'includes/header.ssi';
 
 <?php
 echo <<< _END
+
 <form method="post">
 <p>First Name:
 <input type="text" name="name" value="$a"></p>

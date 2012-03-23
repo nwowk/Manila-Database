@@ -11,28 +11,27 @@ if ( isset($_POST['name']) && isset($_POST['lname'])
 	$c = mysql_real_escape_string($_POST['email']);
 	$d = mysql_real_escape_string($_POST['password']);
 	$e = mysql_real_escape_string($_POST['role']);
-	if (is_numeric($d)){
+	if (is_numeric($e)){
 	$sql = "INSERT INTO users (name, lname, email, password, role) 
 		VALUES ('$a', '$b', '$c', '$d', '$e')";
 	mysql_query($sql);
 	$_SESSION['success'] = 'Record Added';
 	header( 'Location: manageusers.php' ) ;
 	return;}
-	else   
+/*	else   
 		{$_SESSION['error']='All values are required. Values for Access Level should be numeric';
 		header( 'Location: manageusers.php' ) ;
 		return;}
+*/
 }
 require 'includes/header.ssi';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
 
 </head>
-
 <body  id="home">
 <h1>Add User</h1>
 
