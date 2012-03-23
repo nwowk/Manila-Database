@@ -38,14 +38,15 @@ CREATE TABLE IF NOT EXISTS `households` (
   `old` tinyint(4) NOT NULL,
   `dependents` tinyint(100) NOT NULL,
   `income_id` mediumint(9) unsigned NOT NULL,
-  `disaster` tinyint(10) NOT NULL,
+  `evacuation` tinyint(10) NOT NULL,
+  `training` tinyint(10) NOT NULL,
   `waste_id` tinyint(10) NOT NULL,
   `water_id` tinyint(10) NOT NULL,
   `contact_id` tinyint(10) NOT NULL,
-  `HOHgender` text NOT NULL,
+  `HOHgender` tinyint(10) NOT NULL,
   `HOHage` tinyint(110) NOT NULL,
   `users_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `raised` (
@@ -91,8 +92,17 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `lname`, `role`, `email`, `password`) VALUES
 (1, 'Kaarin', 'Hoff', 3, 'kaarin.hoff@gmail.com', 'superadmin'),
+(2, 'Natalie', 'Wowk', 3, 'natalie.wowk@gmail.com', 'gisis'),
 (3, 'Fname', 'Lname', 1, 'testemail', 1),
 (4, 'Olivia', 'Lau', 3, 'olau@umich.edu', 'si572');
+
+INSERT INTO `households` (
+`district`,`buildingtype_id`, `stories`,`raised_id`,`roof_id`,`HHLDsize`,`young`,`old`,`dependents`,`income_id`,
+`evacuation`,`training`,`waste_id`,`water_id`,`contact_id`,`HOHgender`,`HOHage`) 
+VALUES
+('3050','1','2','1','1','6','2','1','0','2','1','1','1','1','1','1','31'),
+('3050','1','2','0','1','5','2','1','1','2','1','1','3','3','3','0','46'),
+('3050','2','2','0','1','4','2','1','1','2','1','1','2','2','3','0','39');
 
 -- --------------------------------------------------------
 
