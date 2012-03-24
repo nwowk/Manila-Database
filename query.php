@@ -145,7 +145,7 @@ while($row = mysql_fetch_array($result)){
 	"</td></tr>";
 }
 }
-
+//Query below is to return all districts.
 if ( isset($_POST['project'])) {
 	$query = "SELECT district, COUNT(1) as 'households', 
 		ROUND(AVG(stories),1) AS 'avgstories',
@@ -185,6 +185,7 @@ if ( isset($_POST['project'])) {
 		WHERE HHLDsize > 0
 		GROUP BY district";
 	$result = mysql_query($query);
+//table headers
 	echo '<table border="1"><tr>
 		<th>District</th>
 		<th>Households</th>
@@ -227,7 +228,7 @@ if ( isset($_POST['project'])) {
 		<th>Female HoH</th>
 		<th>AVG HoH Age</th>
 		</tr>';
-
+//loop to generate table values. 
 while($row = mysql_fetch_array($result)){
 	echo "<tr><td>". $row['district']. 
 	"</td><td>". $row['households'].
@@ -270,7 +271,58 @@ while($row = mysql_fetch_array($result)){
 	"</td><td>". round($row['gender']/$row['households']*100)."%".
 	"</td><td>". $row['avghohage'].
 	"</td></tr>";
-}
+//add the table results to a .csv file output variable
+	$csv_output = $row['district'] . 
+	", ". $row['households'].
+	", ". $row['population'].
+	", ". $row['avghhldsize'].
+	", ". round($row['bt1']/$row['households']*100)."%".
+	", ". round($row['bt2']/$row['households']*100)."%".
+	", ". round($row['bt3']/$row['households']*100)."%".
+	", ". $row['avgstories'].
+	", ". round($row['r0']/$row['households']*100)."%".
+	", ". round($row['r1']/$row['households']*100)."%".
+	", ". round($row['r2']/$row['households']*100)."%".
+	", ". round($row['r3']/$row['households']*100)."%".
+	", ". round($row['r4']/$row['households']*100)."%".
+	", ". round($row['r5']/$row['households']*100)."%".
+	", ". round($row['r6']/$row['households']*100)."%".
+	", ". round($row['roof1']/$row['households']*100)."%".
+	", ". round($row['roof2']/$row['households']*100)."%".
+	", ". round($row['roof3']/$row['households']*100)."%".
+	", ". round($row['roof4']/$row['households']*100)."%".
+	", ". round($row['young']/$row['population']*100)."%".
+	", ". round($row['old']/$row['population']*100)."%".
+	", ". round($row['dependents']/$row['population']*100)."%".
+	", ". round($row['evacuation']/$row['households']*100)."%".
+	", ". round($row['training']/$row['households']*100)."%".
+	", ". round($row['waste1']/$row['households']*100)."%".
+	", ". round($row['waste2']/$row['households']*100)."%".
+	", ". round($row['waste3']/$row['households']*100)."%".
+	", ". round($row['waste4']/$row['households']*100)."%".
+	", ". round($row['water1']/$row['households']*100)."%".
+	", ". round($row['water2']/$row['households']*100)."%".
+	", ". round($row['water3']/$row['households']*100)."%".
+	", ". round($row['water4']/$row['households']*100)."%".
+	", ". round($row['water5']/$row['households']*100)."%".
+	", ". round($row['water6']/$row['households']*100)."%".
+	", ". round($row['contact1']/$row['households']*100)."%".
+	", ". round($row['contact2']/$row['households']*100)."%".
+	", ". round($row['contact3']/$row['households']*100)."%".
+	", ". round($row['contact4']/$row['households']*100)."%".
+	", ". round($row['gender']/$row['households']*100)."%".
+	", ". $row['avghohage']."\n";
+
+}//closes while loop that moves through query results rows
+?>
+<br />
+<center>
+<form name="export" action="export.php" method="post">
+    <input type="submit" value="Export table to CSV">
+    <input type="hidden" value="<? echo $csv_output; ?>" name="csv_output">
+</form>
+</center>
+<?php
 }
 ?>
 </head>
