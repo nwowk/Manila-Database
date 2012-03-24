@@ -3,30 +3,24 @@ require_once "db.php";
 session_start();
 require 'includes/guardgeneral.ssi';
 
-/* This page successfully adds the form to the database. however, the input checks do not work
- (numeric and required fields)
-*/
-?>
-</head> 
-<body id="homewide" onload="initialize()">
-<?php
 //This part checks to see whether the form has been filled.
 if ( isset($_POST['district']) && isset($_POST['buildingtype_id']) 
      && isset($_POST['stories'])
-     && isset($_POST['raised'])
+     && isset($_POST['raised_id'])
+     && isset($_POST['roof_id'])
      && isset($_POST['HHLDsize'])
-     && isset($_POST['age1'])
-     && isset($_POST['age2'])   
-     && isset($_POST['age3']) 
-     && isset($_POST['age4'])  
-     && isset($_POST['age5']) 
-     && isset($_POST['females'])
-     && isset($_POST['prepare_id']) 
-     && isset($_POST['ngo_id']) 
+     && isset($_POST['young'])   
+     && isset($_POST['old']) 
+     && isset($_POST['dependents'])  
+     && isset($_POST['income_id']) 
+     && isset($_POST['evacuation'])
+     && isset($_POST['training']) 
+     && isset($_POST['waste_id']) 
+     && isset($_POST['water_id']) 
      && isset($_POST['contact_id']) 
      && isset($_POST['HOHgender']) 
-     && isset($_POST['HOHage'])  
-     && isset($_POST['dependents']))
+//   && isset($_POST['users_id']) 
+     && isset($_POST['HOHage']))
 {
 //This portion adds the user-entered values into the Households table
    $dis = mysql_real_escape_string($_POST['district']);
@@ -34,40 +28,42 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
    $lon = mysql_real_escape_string($_POST['lon']);
    $bld = mysql_real_escape_string($_POST['buildingtype_id']);
    $sto = mysql_real_escape_string($_POST['stories']);
-   $rsd = mysql_real_escape_string($_POST['raised']);
+   $rsd = mysql_real_escape_string($_POST['raised_id']);
+   $rof = mysql_real_escape_string($_POST['roof_id']);
    $siz = mysql_real_escape_string($_POST['HHLDsize']);
-   $ag1 = mysql_real_escape_string($_POST['age1']);
-   $ag2 = mysql_real_escape_string($_POST['age2']);
-   $ag3 = mysql_real_escape_string($_POST['age3']);
-   $ag4 = mysql_real_escape_string($_POST['age4']);
-   $ag5 = mysql_real_escape_string($_POST['age5']);
-   $fem = mysql_real_escape_string($_POST['females']);
-   $inc = mysql_real_escape_string($_POST['income']);
-   $pre = mysql_real_escape_string($_POST['prepare_id']);
-   $ngo = mysql_real_escape_string($_POST['ngo_id']);
+   $yng = mysql_real_escape_string($_POST['young']);
+   $old = mysql_real_escape_string($_POST['old']);
+   $dep = mysql_real_escape_string($_POST['dependents']);
+   $inc = mysql_real_escape_string($_POST['income_id']);
+   $eva = mysql_real_escape_string($_POST['evacuation']);
+   $tra = mysql_real_escape_string($_POST['training']);
+   $was = mysql_real_escape_string($_POST['waste_id']);
+   $wtr = mysql_real_escape_string($_POST['water_id']);
    $con = mysql_real_escape_string($_POST['contact_id']);
    $gen = mysql_real_escape_string($_POST['HOHgender']);
    $age = mysql_real_escape_string($_POST['HOHage']);
-   $dep = mysql_real_escape_string($_POST['dependents']);
+// $usr = mysql_real_escape_string($_POST['user_id']);
    $dte = date("Y-m-d");
-   $sql = "INSERT INTO Households (district, lat, lon, buildingtype_id, stories, 
-	      raised, HHLDsize, age1, age2, age3, age4, age5, females, income, prepare_id, 
-	      ngo_id, contact_id, HOHgender, HOHage, dependents, date) VALUES 
-	      ('$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$siz', '$ag1', '$ag2', 
-	       '$ag3', '$ag4', '$ag5', '$fem', '$inc', '$pre', '$ngo', '$con', '$gen', '$age', '$dep', '$dte')";
+   $sql = "INSERT INTO households (district, lat, lon, buildingtype_id, stories, 
+	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
+	      water_id, contact_id, HOHgender, HOHage, date) VALUES 
+	      ('$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
+	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age', '$dte')";
    mysql_query($sql);
    $_SESSION['success'] = 'Record Added';
    header( 'Location: verify.php' ) ;
-   return;	
+   return;
 }
 require 'includes/header.ssi';
+
 ?>
 
 <!DOCTYPE html> 
 <html> 
   <head> 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
-    
+
+
 <title>Manila Database</title>
 <link href="main.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
@@ -103,6 +99,9 @@ require 'includes/header.ssi';
 	return true;
 	}
     </script> </div>
+</head> 
+<body id="homewide" onload="initialize()">
+
 
 <!--This part is the form where users can enter household information.-->
 
