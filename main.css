@@ -1,15 +1,26 @@
 @charset "UTF-8";
 
 /*generic styles*/
+html{
+	background: #CDDDC2;
+	height: 100%;
+	width: 100%
+}
+
 body{
-	margin:0; padding: 0; background: ; 
+	margin:0; padding: 0 20px 20px 20px; background: #FFF; 
 	color:# ; 
-	font:small "arial narrow," arial, times new roman;
+	font:small "cambria," arial narrow, times new roman;
 	text-align:left;
+	height: auto;
+	width:785px;
+	margin-top:10px;
+	margin-left:auto;
+	margin-right:auto;
 	}
 a {
 	text-decoration:none;
-	color:#29923f;
+	color:#028123;
 	}
 a img {
 	border:0;
@@ -36,11 +47,12 @@ table.float {
 	float:left;
 	}
 h1{
-	color:#000;
+	color:#028123;
 	font-size:2em;
+	font: "Constantina", Cambria;
 	}
 h2{
-	color:#333366;
+	color:#028123;
 	font-size:1.4em;
 	}
 h3{
@@ -51,57 +63,46 @@ h3{
 	}
 /*end generic styles*/
  
-#home {
-	width:785px;
-	margin-top:10px;
-	margin-left:auto;
-	margin-right:auto;
-	}
-#homewide {
-	width: 780px;
-	margin-top:10px;
-	margin-left:auto;
-	margin-right:auto;
-	}
+
 #header{
 	width:785px;
 	height:90px;
-	background-color:#000;
+	background-color:;
 	}
 #logo{
 	vertical-align:text-top;
-	margin-left:5px;
-	width:80px;
+	margin-left:0px;
+	width:180px;
 	height:80px;
 	float:left;
 	}
 #header h1{
-	padding: 1em 0 0 0;
+	padding: 1em 0 0 190px;
 	letter-spacing:1.25px;
-	font-size:x-large;
-	color:#FFF;
+	font-size:2.5em;
+	color:#028123;
 	}
 #logout{
 	vertical-align:text-top;
 	float:right;
 	width:100px;
 	font-size:x-small;
-	color:#FFF;
+	color:#028123;
 	}
 #logout a {
-	color: #FFF;
+	color: #028123;
 	text-decoration:none;
 	font-weight:bold;	
 	font-size:small;
 	}
 #space {
-	padding:0 0 2.5em 0;
+	padding:0 0 3.5em 0;
 	}
 #body_nav{
 	width:100%;
 	margin: 0 0 0 0px;
 	float:left;
-	background-color:#000;
+	background-color:;
 	}
 #main_nav li{
 	display: inline; 
@@ -119,7 +120,7 @@ h3{
 	letter-spacing:1.75px;
 	height: 28px;
 	width: 95px;
-	background-color:#29923f;
+	background-color:#028123;
 	margin: 0px 2px 0px 2px;
 	text-decoration: none;
 	-moz-box-shadow: 2px -2px 7px #000;
@@ -128,7 +129,7 @@ h3{
 	}
 .nav a:hover {
 	font-size:15px;
-	color: #032631;
+	color: #028123;
 	background-color:#FFF;
 	text-decoration:none;
 	padding:1.25em 1.25em 1.25em 1.25em;
@@ -146,4 +147,21 @@ h3{
 #addproject_number_errorloc{
 	color: red;
 	}
-	
+#add_district_errorloc{
+	color: red;
+	}
+#add_HHLDsize_errorloc{
+	color: red;
+	}
+#add_young_errorloc{
+	color: red;
+	}
+#add_old_errorloc{
+	color: red;
+	}
+#add_dependents_errorloc{
+	color: red;
+	}
+#add_HOHage_errorloc{
+	color: red;
+	}

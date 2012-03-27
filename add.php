@@ -51,6 +51,7 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
 	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age', '$dte')";
    mysql_query($sql);
    $_SESSION['success'] = 'Record Added';
+   $id = mysql_insert_id();
    header( 'Location: verify.php' ) ;
    return;
 }
@@ -62,7 +63,7 @@ require 'includes/header.ssi';
 <html> 
   <head> 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
-
+    <script src="includes/gen_validatorv4.js" type="text/javascript"></script>
 
 <title>Manila Database</title>
 <link href="main.css" rel="stylesheet" type="text/css" />
@@ -115,9 +116,11 @@ require 'includes/header.ssi';
 <p>All fields are required unless otherwise indicated. </p>
 <form name = "add" action="add.php" onsubmit="return validateform();" method="post">
 <table border="0">
+
 <tr>
 <td width="50%">What is the district ID?</td>
-<td width="50%"><input type="text" name="district"></td></tr> 
+<td width="50%"><div id='add_district_errorloc' class='error_strings'></div>
+<input type="text" name="district"></td></tr> 
 <tr><td>Latitude (optional):</td>
 <td><input type="text" name="lat"></p></td></tr>
 <tr><td>Longitude (optional):</td>
@@ -147,21 +150,26 @@ require 'includes/header.ssi';
 <input type="radio" name="roof_id" value="3">Metal</br>
 <input type="radio" name="roof_id" value="4">Mixed</br>
 </td></tr>
+
 <tr><td>How many people live in this house?</td>
-<td><input type="text" name="HHLDsize"></td></tr>
+<td><div id='add_HHLDsize_errorloc' class='error_strings'></div>
+<input type="text" name="HHLDsize"></td></tr>
 <tr><td>How many people are under the age of 6?</td>
-<td><input type="text" name="young"></td></tr>
+<td><div id='add_young_errorloc' class='error_strings'></div>
+<input type="text" name="young"></td></tr>
 <tr><td>How many people are over the age of 60?</td>
-<td><input type="text" name="old"></td>
+<td><div id='add_old_errorloc' class='error_strings'></div>
+<input type="text" name="old"></td>
 <tr><td>How many adults in your household need help dressing, eating, or moving around?</td>
-<td><input type="text" name="dependents"></td></tr>
+<td><div id='add_dependents_errorloc' class='error_strings'></div>
+<input type="text" name="dependents"></td></tr>
 <tr><td>What is your estimated household income PER MONTH?</td>
 <td>
-<input type="radio" name="income_id" value="1">0-4,999 pesos</br>
-<input type="radio" name="income_id" value="2">5,000-9,999 pesos</br>
-<input type="radio" name="income_id" value="3">10,000-14,999 pesos</br>
-<input type="radio" name="income_id" value="4">15,000-19,999 pesos</br>
-<input type="radio" name="income_id" value="5">20,000 and above</br>
+<input type="radio" name="income_id" value="1">under 2,000 pesos</br>
+<input type="radio" name="income_id" value="2">2,001-3,000 pesos</br>
+<input type="radio" name="income_id" value="3">3,001-5,000 pesos</br>
+<input type="radio" name="income_id" value="4">5,001-10,000</br>
+<input type="radio" name="income_id" value="5">more than 10,000</br>
 <input type="radio" name="income_id" value="6">Don't know or no answer</br>
 </td></tr>
 <tr><td>Are you aware of whether your community organization has a disaster evacuation plan?</td>
@@ -203,12 +211,25 @@ require 'includes/header.ssi';
 <input type="radio" name="HOHgender" value="1">female</br>
 </td></tr>
 <tr><td>What is the age of the head of household?</td>
-<td><input type="text" name="HOHage"></td></tr>
+<td><div id='add_HOHage_errorloc' class='error_strings'></div>
+<input type="text" name="HOHage"></td></tr>
 <tr><td><a href="add.php">Cancel</a></td>
 <td><input type="submit" value="Add New"/></td></tr></table>
 </form>
+<script language="JavaScript" type="text/javascript">
+    var frmvalidator = new Validator("add");
+ frmvalidator.EnableOnPageErrorDisplay();
+ frmvalidator.EnableMsgsTogether();
+
+ frmvalidator.addValidation("district","numeric","District ID must be a number");
+ frmvalidator.addValidation("HHLDsize","numeric","This field must be a number");
+ frmvalidator.addValidation("young","numeric","This field must be a number");
+ frmvalidator.addValidation("old","numeric","This field must be a number");
+ frmvalidator.addValidation("dependents","numeric","This field must be a number");
+ frmvalidator.addValidation("HOHage","numeric","Age must be a number");
+
+</script>
 </td>
 <td><div id="map_canvas" style="width:100% height:100%"></div></td>
 </tr>
 </table>
-
