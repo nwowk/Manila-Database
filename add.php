@@ -52,7 +52,7 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
    mysql_query($sql);
    $_SESSION['success'] = 'Record Added';
    $id = mysql_insert_id();
-   header( 'Location: verify.php' ) ;
+   header( 'Location: verify.php?id='.$id ) ;
    return;
 }
 require 'includes/header.ssi';
@@ -233,3 +233,4 @@ require 'includes/header.ssi';
 <td><div id="map_canvas" style="width:100% height:100%"></div></td>
 </tr>
 </table>
+<p>&nbsp;</p>
