@@ -4,7 +4,9 @@ session_start();
 require 'includes/guardgeneral.ssi';
 
 //This part checks to see whether the form has been filled.
-if ( isset($_POST['district']) && isset($_POST['buildingtype_id']) 
+if ( isset($_POST['project_id']) 
+     && isset($_POST['district']) 
+     && isset($_POST['buildingtype_id']) 
      && isset($_POST['stories'])
      && isset($_POST['raised_id'])
      && isset($_POST['roof_id'])
@@ -24,6 +26,7 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
 {
 
 //This portion adds the user-entered values into the Households table
+   $pid = mysql_real_escape_string($_POST['project_id']);
    $dis = mysql_real_escape_string($_POST['district']);
    $lat = mysql_real_escape_string($_POST['lat']);
    $lon = mysql_real_escape_string($_POST['lon']);
@@ -46,10 +49,10 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
 // $usr = mysql_real_escape_string($_POST['user_id']);
    $dte = date("Y-m-d");
    
-   $sql = "INSERT INTO households (district, lat, lon, buildingtype_id, stories, 
+   $sql = "INSERT INTO households (project_id, district, lat, lon, buildingtype_id, stories, 
 	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
 	      water_id, contact_id, HOHgender, HOHage, date) VALUES 
-	      ('$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
+	      ('$pid','$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
 	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age','$dte')";
    mysql_query($sql);
    $id = mysql_insert_id();
@@ -60,7 +63,7 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
 }
 $id = mysql_real_escape_string($_GET['id']);
 
-$result = mysql_query("SELECT district, lat, lon, buildingtype_id, stories, raised_id, 
+$result = mysql_query("SELECT project_id, district, lat, lon, buildingtype_id, stories, raised_id, 
 		  roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
 	      water_id, contact_id, HOHgender, HOHage, id FROM households WHERE id='$id'");
 if ( $result == FALSE ) {
@@ -69,25 +72,26 @@ if ( $result == FALSE ) {
 }
 $row = mysql_fetch_row($result);
 
-$dis = htmlentities($row[0]);
-$lat = htmlentities($row[1]);
-$lon = htmlentities($row[2]);
-$bld = htmlentities($row[3]);
-$sto = htmlentities($row[4]);
-$rsd = htmlentities($row[5]);
-$rof = htmlentities($row[6]);
-$siz = htmlentities($row[7]);
-$yng = htmlentities($row[8]);
-$old = htmlentities($row[9]);
-$dep = htmlentities($row[10]);
-$inc = htmlentities($row[11]);
-$eva = htmlentities($row[12]);
-$tra = htmlentities($row[13]);
-$was = htmlentities($row[14]);
-$wtr = htmlentities($row[15]);
-$con = htmlentities($row[16]);
-$gen = htmlentities($row[17]);
-$age = htmlentities($row[18]);
+$pid = htmlentities($row[0]);
+$dis = htmlentities($row[1]);
+$lat = htmlentities($row[2]);
+$lon = htmlentities($row[3]);
+$bld = htmlentities($row[4]);
+$sto = htmlentities($row[5]);
+$rsd = htmlentities($row[6]);
+$rof = htmlentities($row[7]);
+$siz = htmlentities($row[8]);
+$yng = htmlentities($row[9]);
+$old = htmlentities($row[10]);
+$dep = htmlentities($row[11]);
+$inc = htmlentities($row[12]);
+$eva = htmlentities($row[13]);
+$tra = htmlentities($row[14]);
+$was = htmlentities($row[15]);
+$wtr = htmlentities($row[16]);
+$con = htmlentities($row[17]);
+$gen = htmlentities($row[18]);
+$age = htmlentities($row[19]);
 
 require 'includes/header.ssi';
 ?>
@@ -112,6 +116,9 @@ echo <<< _END
 <form method="post">
 <table>
 <tr>
+<td>Project #</td>
+<td><input type="text" name="project_id" value="$pid"></td>
+</tr><tr>
 <td>District:</td>
 <td><input type="text" name="district" value="$dis"></td>
 </tr><tr>

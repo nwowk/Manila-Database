@@ -4,7 +4,9 @@ session_start();
 require 'includes/guardgeneral.ssi';
 
 //This part checks to see whether the form has been filled.
-if ( isset($_POST['district']) && isset($_POST['buildingtype_id']) 
+if ( isset($_POST['project_id']) 
+     && isset($_POST['district'])
+     && isset($_POST['buildingtype_id']) 
      && isset($_POST['stories'])
      && isset($_POST['raised_id'])
      && isset($_POST['roof_id'])
@@ -23,6 +25,7 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
      && isset($_POST['HOHage']))
 {
 //This portion adds the user-entered values into the Households table
+   $pid = mysql_real_escape_string($_POST['project_id']);
    $dis = mysql_real_escape_string($_POST['district']);
    $lat = mysql_real_escape_string($_POST['lat']);
    $lon = mysql_real_escape_string($_POST['lon']);
@@ -44,10 +47,10 @@ if ( isset($_POST['district']) && isset($_POST['buildingtype_id'])
    $age = mysql_real_escape_string($_POST['HOHage']);
 // $usr = mysql_real_escape_string($_POST['user_id']);
    $dte = date("Y-m-d");
-   $sql = "INSERT INTO households (district, lat, lon, buildingtype_id, stories, 
+   $sql = "INSERT INTO households (project_id, district, lat, lon, buildingtype_id, stories, 
 	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
 	      water_id, contact_id, HOHgender, HOHage, date) VALUES 
-	      ('$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
+	      ('$pid', '$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
 	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age', '$dte')";
    mysql_query($sql);
    $_SESSION['success'] = 'Record Added';
@@ -118,6 +121,8 @@ require 'includes/header.ssi';
 <table border="0">
 
 <tr>
+<tr><td>What is the project number?</td>
+<td><input type="text" name="project_id"></p></td></tr>
 <td width="50%">What is the district ID?</td>
 <td width="50%"><div id='add_district_errorloc' class='error_strings'></div>
 <input type="text" name="district"></td></tr> 
@@ -150,7 +155,6 @@ require 'includes/header.ssi';
 <input type="radio" name="roof_id" value="3">Metal</br>
 <input type="radio" name="roof_id" value="4">Mixed</br>
 </td></tr>
-
 <tr><td>How many people live in this house?</td>
 <td><div id='add_HHLDsize_errorloc' class='error_strings'></div>
 <input type="text" name="HHLDsize"></td></tr>
