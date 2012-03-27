@@ -23,12 +23,14 @@ if ( isset($_SESSION['success']) ) {
     unset($_SESSION['success']);
 }
 
-$result = mysql_query("SELECT number, name, description, id FROM projects");
+$result = mysql_query("SELECT number, name, description, startdate, enddate, id FROM projects");
 ?>
 <table border="1"><tr>
 <td><strong>Project Number</strong></td>
 <td><strong>Project Name</strong></td>
 <td><strong>Description</strong></td>
+<td><strong>Start Date</strong></td>
+<td><strong>End Date</strong></td>
 <td><strong>Edit</strong></td>
 <td><strong>Delete</strong></td>
 </tr>
@@ -41,10 +43,14 @@ while ( $row = mysql_fetch_row($result) ) {
 	echo(htmlentities($row[1]));
     echo("</td><td>");
 	echo(htmlentities($row[2]));
-    echo("</td><td>");
-	echo('<a href="editproject.php?id='.htmlentities($row[3]).'">Edit</a>');
 	echo("</td><td>");
-	echo('<a href="deleteproject.php?id='.htmlentities($row[3]).'">Delete</a>');
+	echo(htmlentities($row[3]));
+	echo("</td><td>");
+	echo(htmlentities($row[4]));
+    echo("</td><td>");
+	echo('<a href="editproject.php?id='.htmlentities($row[5]).'">Edit</a>');
+	echo("</td><td>");
+	echo('<a href="deleteproject.php?id='.htmlentities($row[5]).'">Delete</a>');
 	echo("</td></tr>");
 }
 	echo("</table>");

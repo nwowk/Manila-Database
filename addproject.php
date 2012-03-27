@@ -4,15 +4,20 @@ session_start();
 require 'includes/guard23.ssi';
 
 
-if ( isset($_POST['number']) && isset($_POST['name']) 
-	&& isset($_POST['description'])) 
+if ( isset($_POST['number']) 
+	&& isset($_POST['name']) 
+	&& isset($_POST['description'])
+	&& isset($_POST['startdate'])
+	&& isset($_POST['enddate'])) 
 	{
 	$a = mysql_real_escape_string($_POST['number']);
 	$b = mysql_real_escape_string($_POST['name']);
 	$c = mysql_real_escape_string($_POST['description']);
+	$d = mysql_real_escape_string($_POST['startdate']);
+	$e = mysql_real_escape_string($_POST['enddate']);
 	if (is_numeric($a)){
-	$sql = "INSERT INTO projects (number, name, description) 
-		VALUES ('$a', '$b', '$c')";
+	$sql = "INSERT INTO projects (number, name, description, startdate, enddate) 
+		VALUES ('$a', '$b', '$c', '$d', '$e')";
 	mysql_query($sql);
 	$_SESSION['success'] = 'Record Added';
 	header( 'Location: manageprojects.php' ) ;
@@ -43,7 +48,9 @@ require 'includes/header.ssi';
 <tr><td>Project Number:</td><td> <input type="text" name="number"/></td></tr>
 <tr><td>Project Name:</td><td> <input type="text" name="name"/></td></tr>
 <tr><td>Project Description:</td><td> <textarea type="text" name="description" rows="6"></textarea></td></tr>
-<tr><td></td>
+<tr><td>Start Date:</td><td> <input type="text" name="startdate"/></td></tr>
+<tr><td>End Date:</td><td> <input type="text" name="enddate"/></td>
+</td>
 	<td align="right"><input type="submit" value="Add New"/>&nbsp;&nbsp;&nbsp;<a href="manageprojects.php">Cancel</a></td></tr>
 </table>
 </form>
