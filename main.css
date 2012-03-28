@@ -8,26 +8,41 @@ html{
 }
 
 body{
-	margin:0; padding: 0 20px 20px 20px; background: #FFF; 
-	color:# ; 
-	font:small "cambria," arial narrow, times new roman;
+	padding: 0 20px 20px 20px; 
+	background: #FFF; 
+	font:small "arial," arial narrow, times new roman;
 	text-align:left;
 	height: auto;
 	width:785px;
-	margin-top:10px;
-	margin-left:auto;
-	margin-right:auto;
+	margin:0 auto;
 	}
 a {
-	text-decoration:none;
+	text-decoration:underline;
 	color:#028123;
 	}
 a img {
 	border:0;
 	}
-p a{
-	text-decoration:underline;
-	color:#29923f;
+table a{
+	text-decoration:none;
+	font-weight:bold;
+	color:#000;
+	display:block;
+	padding: .2em .2em .2em .2em;
+	background-color: grey;
+	margin:0;
+	float:left;
+	border:1px black ridge;
+	}
+.square{
+	text-decoration:none;
+	font-weight:bold;
+	color:#000;
+	display:block;
+	padding: .2em .2em .2em .2em;
+	background-color: grey;
+	margin:0;
+	border:1px black ridge;
 	}
 p{
 	margin:0 0 1em;
@@ -49,7 +64,7 @@ table.float {
 h1{
 	color:#028123;
 	font-size:2em;
-	font: "Constantina", Cambria;
+	font: "arial", Cambria;
 	}
 h2{
 	color:#028123;
@@ -93,7 +108,10 @@ h3{
 	color: #028123;
 	text-decoration:none;
 	font-weight:bold;	
-	font-size:small;
+	font-size:medium;
+	}
+#logout a:hover {
+	text-decoration:underline;
 	}
 #space {
 	padding:0 0 3.5em 0;
@@ -102,8 +120,8 @@ h3{
 	width:100%;
 	margin: 0 0 0 0px;
 	float:left;
-	background-color:;
 	}
+
 #main_nav li{
 	display: inline; 
 	list-style:none;
@@ -113,26 +131,26 @@ h3{
 	font-variant: small-caps;
 	}
 .nav a{ /*a means link*/
-	font-size:15px;
+	font-size:1em;
 	color:#FFF;
 	text-decoration:none;
-	padding:1.25em 1.25em 1.25em 1.25em;
+	padding:1em 1em 1em 1em;
 	letter-spacing:1.75px;
-	height: 28px;
-	width: 95px;
+	height: 2em;
+	width: auto;
 	background-color:#028123;
-	margin: 0px 2px 0px 2px;
+	margin: .2em .2em .2em .2em;
 	text-decoration: none;
 	-moz-box-shadow: 2px -2px 7px #000;
 	-webkit-box-shadow: 2px -2px 7px #000;
 	box-shadow: 2px -2px 7px #000;
 	}
 .nav a:hover {
-	font-size:15px;
+	font-size:1em;
 	color: #028123;
-	background-color:#FFF;
+	background-color:#CDDDC2;
 	text-decoration:none;
-	padding:1.25em 1.25em 1.25em 1.25em;
+	padding:1em 1em 1em 1em;
 	font-weight:bold;	
 	letter-spacing:1.75px;
 	-moz-box-shadow: 1px -1px 5px #84D24A;
