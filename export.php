@@ -6,13 +6,8 @@
 */
 
 //First we'll generate an output variable called out. It'll have all of our text for the CSV file.
-$out = '';
-
+$out ="District, Households, Population, AVG Household Size, Light Materials, Semi-Concrete, Concrete, AVG Stories, No Foundation, Slab, Bamboo, Wood, Steel Platform, Cinder blocks, Other foundation, Concrete Roof, Light materials, Metal roof, Mixed roof, Under 6, Over 60, Dependents, Evac plan, Training, Garbage Collector, Burning, Dumping public, Dumping water, Well, Faucet, River, Pipe, Seller, Other water, SMS, email, radio, TV, Female HoH, AVG HoH Age"."\n";
 //Next we'll check to see if our variables posted and if they did we'll simply append them to out.
-//if (isset($_POST['csv_hdr'])) {
-//$out .= $_POST['csv_hdr'];
-//$out .= "\n";
-//}
 
 if (isset($_POST['csv_output'])) {
 $out .= $_POST['csv_output'];
@@ -22,7 +17,7 @@ $out .= $_POST['csv_output'];
 $filename = "result_".date("Y-m-d_H-i",time());
 
 //Generate the CSV file header
-header("Content-type: application/vnd.ms-excel");
+header("Content-type: text/csv");
 header("Content-disposition: csv" . date("Y-m-d") . ".csv");
 header("Content-disposition: filename=".$filename.".csv");
 
