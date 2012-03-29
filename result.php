@@ -115,7 +115,7 @@ if ( isset($_POST['district'])) {
 	$result = mysql_query($query);
 	if ( $result == FALSE ) {
     		$_SESSION['error'] = 'Search by district failed. Please try again.';
-    		header( 'Location: query.php' ) ;
+    		header( 'Location: search.php' ) ;
     		return;
 	}
 	echo $tableheader;
@@ -212,7 +212,7 @@ if ( isset($_POST['project'])) {
 	$result = mysql_query($query);
 	if ( $result == FALSE ) {
     		$_SESSION['error'] = 'Search by project failed. Please try again.';
-    		header( 'Location: query.php' ) ;
+    		header( 'Location: search.php' ) ;
     		return;
 	}
 	echo $tableheader;

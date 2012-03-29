@@ -1,0 +1,69 @@
+<link href="main.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+</style>
+
+<div id="header">
+<a name="top"></a>
+  <div id="logo"><img src="images/CDP3DLogo.jpg" width="170px"/></div>
+	<h1>Manila Database
+<?php
+{ ?>
+	<div id='logout'>
+	<?php require 'includes/success.ssi';?>
+	</div>
+	<?php }
+?>
+	</h1>
+<div id="body_nav">
+<ol id="main_nav">
+<?php
+	
+if ( isset($_SESSION ['name']) ) 
+{
+	$yourname = $_SESSION['name'];
+	$yourrole = $_SESSION['role'];
+		if ($yourrole == "1")
+		{
+	?>
+		<li class='nav'><a href='add.php'>New Entry</a></li>
+		<li class='nav'><a href='instructions.php'>Instructions</a></li>
+		<li class='nav'><a href='man.php'>View Projects</a></li>
+	<?php
+		}
+		if ($yourrole == "2")
+		{
+	?>
+		<li class='nav'><a href='add.php'>New Entry</a></li>
+		<li class='nav'><a href='instructions.php'>Instructions</a></li>
+		<li class='nav'><a href='query.php'>Search</a></li>
+		<li class='nav'><a href='manageprojects.php'>Manage Projects</a></li>
+	<?php
+		}
+		if ($yourrole == "3")
+		{
+	?>
+		<li class='nav'><a href='add.php'>New Entry</a></li>
+		<li class='nav'><a href='instructions.php'>Instructions</a></li>
+		<li class='nav'><a href='search.php'>Search</a></li>
+		<li class='nav'><a href='manageprojects.php'>Manage Projects</a></li>
+		<li class='nav'><a href='manageusers.php'>Manage Users</a></li>
+	<?php
+		}
+		else
+		{
+		echo ' ';
+		}
+}
+else {
+	echo ' ';
+}
+?>
+</ol>
+</div></div>
+</div> <!--header-->
+<div id="space"></div>
+
+<!--body_nav--> 
+
+
