@@ -36,7 +36,7 @@ if ( isset($_SESSION ['name']) )
 	?>
 		<li class='nav'><a href='add.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
-		<li class='nav'><a href='query.php'>Query</a></li>
+		<li class='nav'><a href='search.php'>Search</a></li>
 		<li class='nav'><a href='manageprojects.php'>Manage Projects</a></li>
 	<?php
 		}
@@ -45,7 +45,7 @@ if ( isset($_SESSION ['name']) )
 	?>
 		<li class='nav'><a href='add.php'>New Entry</a></li>
 		<li class='nav'><a href='instructions.php'>Instructions</a></li>
-		<li class='nav'><a href='query.php'>Query</a></li>
+		<li class='nav'><a href='search.php'>Search</a></li>
 		<li class='nav'><a href='manageprojects.php'>Manage Projects</a></li>
 		<li class='nav'><a href='manageusers.php'>Manage Users</a></li>
 	<?php
