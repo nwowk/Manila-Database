@@ -55,7 +55,8 @@ if ( isset($_POST['project_id'])
    mysql_query($sql);
    $_SESSION['success'] = 'Record Added';
    $id = mysql_insert_id();
-   header( 'Location: verify.php?id='.$id ) ;
+   $_SESSION ['lasthhld'] = $id;
+   header( 'Location: verify.php' ) ;
    return;
 }
 require 'includes/header.ssi';

@@ -4,8 +4,11 @@ session_start();
 require 'includes/guardgeneral.ssi';
 
 //This part checks to see whether the form has been filled.
-if ( isset($_POST['project_id']) 
-     && isset($_POST['district']) 
+$id = mysql_real_escape_string($_SESSION['lasthhld']);
+if ( isset($_POST['btnupdate']) 
+/*   && isset($_POST['district']) 
+//   && isset($_POST['lat']) 
+//   && isset($_POST['lon']) 
      && isset($_POST['buildingtype_id']) 
      && isset($_POST['stories'])
      && isset($_POST['raised_id'])
@@ -22,7 +25,9 @@ if ( isset($_POST['project_id'])
      && isset($_POST['contact_id']) 
      && isset($_POST['HOHgender']) 
 //   && isset($_POST['users_id']) 
-     && isset($_POST['HOHage']))
+     && isset($_POST['HOHage'])
+     && isset($_POST['date']) */
+     )     
 {
 
 //This portion adds the user-entered values into the Households table
@@ -48,20 +53,29 @@ if ( isset($_POST['project_id'])
    $age = mysql_real_escape_string($_POST['HOHage']);
 // $usr = mysql_real_escape_string($_POST['user_id']);
    $dte = date("Y-m-d");
-   
-   $sql = "INSERT INTO households (project_id, district, lat, lon, buildingtype_id, stories, 
+  
+   $sql = "UPDATE households 
+		   SET project_id='$pid', district='$dis', lat='$lat', lon='$lon', 
+		   buildingtype_id='$bld', stories='$sto', raised_id='$rsd', roof_id='$rof', 
+		   HHLDsize='$siz', young='$yng', old='$old', dependents='$dep', 
+		   income_id='$inc', evacuation='$eva', training='$tra', waste_id='$was', 
+		   water_id='$wtr', contact_id='$con', HOHgender='$gen', HOHage='$age', date='$dte' 
+		   where id=$id";
+	  
+	  /* (project_id, district, lat, lon, buildingtype_id, stories, 
 	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
 	      water_id, contact_id, HOHgender, HOHage, date) VALUES 
 	      ('$pid','$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
 	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age','$dte')";
+	       */
    mysql_query($sql);
-   $id = mysql_insert_id();
    $_SESSION['success'] = 'Record Updated';
-   echo  "here...";
-   header( 'Location: verify.php?id='.$id ) ;
+//   echo  "here...";
+   $_SESSION ['lasthhld'] = $id;
+   header( 'Location: verify.php' ) ;
    return;	
 }
-$id = mysql_real_escape_string($_GET['id']);
+
 
 $result = mysql_query("SELECT project_id, district, lat, lon, buildingtype_id, stories, raised_id, 
 		  roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
@@ -135,7 +149,7 @@ echo <<< _END
 <td><input type="text" name="stories" value="$sto"></td>
 </tr><tr>
 <td>Raised:</td>
-<td><input type="text" name="raised" value="$rsd"></td>
+<td><input type="text" name="raised_id" value="$rsd"></td>
 </tr><tr>
 <td>Roof Type:</td>
 <td><input type="text" name="roof_id" value="$rof"></td>
@@ -159,7 +173,7 @@ echo <<< _END
 <td><input type="text" name="evacuation" value="$eva"></td>
 </tr><tr>
 <td>Training:</td>
-<td><input type="text" name="traing" value="$tra"></td>
+<td><input type="text" name="training" value="$tra"></td>
 </tr><tr>
 <td>Waste Disposal:</td>
 <td><input type="text" name="waste_id" value="$was"></td>
@@ -178,7 +192,7 @@ echo <<< _END
 </tr><tr>
 <input type="hidden" name="id" value="$id">
 </tr><tr>
-<p><input type="submit" value="Update entry"/>
+<p><input type="submit" name="btnupdate" value="Update entry"/>
 </p>
 </form>
 <p><a href="add.php">Looks good! I want to add another household.</a></p>
