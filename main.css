@@ -23,27 +23,6 @@ a {
 a img {
 	border:0;
 	}
-table a{
-	text-decoration:none;
-	font-weight:bold;
-	color:#000;
-	display:block;
-	padding: .2em .2em .2em .2em;
-	background-color: grey;
-	margin:0;
-	float:left;
-	border:1px black ridge;
-	}
-.square{
-	text-decoration:none;
-	font-weight:bold;
-	color:#000;
-	display:block;
-	padding: .2em .2em .2em .2em;
-	background-color: grey;
-	margin:0;
-	border:1px black ridge;
-	}
 p{
 	margin:0 0 1em;
 	text-align:left;
@@ -54,6 +33,8 @@ table {
 table td{
 	vertical-align: top;
 	text-align: left;
+	border-collapse:collapse;
+	border-top:1px solid green;
 	}
 table.small {
 	width:200px;
@@ -71,10 +52,8 @@ h2{
 	font-size:1.4em;
 	}
 h3{
-	text-align:center; 
-	background-color:#FFF;
-	color:#333366;
-	font-variant: small-caps;
+	color:#028123;
+	font-size:1.4em;
 	}
 /*end generic styles*/
  
@@ -157,7 +136,30 @@ h3{
 	-webkit-box-shadow: 1px -1px 5px #84D24A;
 	box-shadow: 1px -1px 5px #84D24A;
 	}
-
+table a{
+	color: forestgreen;
+	font-weight: bold;
+	text-decoration:none;
+	text-transform: uppercase;
+	background-color:#CDDDC2;
+	border:1px forestgreen ridge;
+}
+.square{
+	color: forestgreen;
+	font-weight: bold;
+	text-decoration:none;
+	text-transform: uppercase;
+	background-color:#CDDDC2;
+	border:1px forestgreen ridge;
+	}
+h2 a{
+	color: forestgreen;
+	font-weight: bold;
+	text-decoration:none;
+	text-transform: uppercase;
+	background-color:#CDDDC2;
+	border:1px forestgreen ridge;
+}
 #map_canvas  {
 	width: 350px;
 	height: 350px;
