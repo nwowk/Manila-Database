@@ -123,7 +123,8 @@ require 'includes/header.ssi';
 
 <tr>
 <tr><td>What is the project number?</td>
-<td><input type="text" name="project_id"></p></td></tr>
+<td><div id='add_project_id_errorloc' class='error_strings'></div>
+<input type="text" name="project_id"></td></tr>
 <td width="50%">What is the district ID?</td>
 <td width="50%"><div id='add_district_errorloc' class='error_strings'></div>
 <input type="text" name="district"></td></tr> 
@@ -226,6 +227,7 @@ require 'includes/header.ssi';
  frmvalidator.EnableOnPageErrorDisplay();
  frmvalidator.EnableMsgsTogether();
 
+ frmvalidator.addValidation("project_id","numeric","Project number must be a number"); 
  frmvalidator.addValidation("district","numeric","District ID must be a number");
  frmvalidator.addValidation("HHLDsize","numeric","This field must be a number");
  frmvalidator.addValidation("young","numeric","This field must be a number");
