@@ -10,21 +10,46 @@ CREATE DATABASE `manila` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `manila`;
 
 GRANT ALL ON manila.* TO 'gisis'@'localhost' IDENTIFIED BY 'cool';
+--
+-- Table structure for table `buildingtype`
+--
 
 CREATE TABLE IF NOT EXISTS `buildingtype` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `value` varchar(128) NOT NULL,
   KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `buildingtype`
+--
+
+INSERT INTO `buildingtype` (`id`, `value`) VALUES
+(1, 'Light materials'),
+(2, 'Semi-concrete'),
+(3, 'All concrete');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
 
 CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
+--
+-- Dumping data for table `contact`
+--
 
-
+INSERT INTO `contact` (`id`, `value`) VALUES
+(1, 'sms/text'),
+(2, 'email/facebook'),
+(3, 'radio'),
+(4, 'TV');
 
 -- --------------------------------------------------------
 
@@ -32,7 +57,6 @@ CREATE TABLE IF NOT EXISTS `contact` (
 -- Table structure for table `households`
 --
 
-DROP TABLE IF EXISTS `households`;
 CREATE TABLE IF NOT EXISTS `households` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `district` int(11) NOT NULL,
@@ -59,56 +83,7 @@ CREATE TABLE IF NOT EXISTS `households` (
   `project_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
-
-
-
-CREATE TABLE IF NOT EXISTS `raised` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
-CREATE TABLE IF NOT EXISTS `roof` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
-CREATE TABLE IF NOT EXISTS `income` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
-CREATE TABLE IF NOT EXISTS `waste` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
-CREATE TABLE IF NOT EXISTS `water` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `lname` text NOT NULL,
-  `role` tinyint(10) NOT NULL,
-  `email` text NOT NULL,
-  `password` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
-INSERT INTO `users` (`id`, `name`, `lname`, `role`, `email`, `password`) VALUES
-(1, 'Kaarin', 'Hoff', 3, 'kaarin.hoff@gmail.com', 'superadmin'),
-(2, 'Natalie', 'Wowk', 3, 'natalie.wowk@gmail.com', 'gisis'),
-(3, 'Fname', 'Lname', 1, 'testemail', 1),
-(4, 'Olivia', 'Lau', 3, 'olau@umich.edu', 'si572');
-(5, 'Tyson', 'Koenig', 3, 'tmkoenig@umich.edu', 'word');
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `households`
@@ -144,11 +119,33 @@ INSERT INTO `households` (`id`, `district`, `date`, `lat`, `lon`, `buildingtype_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `income`
+--
+
+CREATE TABLE IF NOT EXISTS `income` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `income`
+--
+
+INSERT INTO `income` (`id`, `value`) VALUES
+(1, 'under 2,000 pesos'),
+(2, '2,001-3,000 pesos'),
+(3, '3,001-5,000 pesos'),
+(4, '5,001-10,000 pesos'),
+(5, 'more than 10,000 pesos'),
+(6, 'Don''t know or no answer');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `projects`
 --
 
-
-DROP TABLE IF EXISTS `projects`;
 CREATE TABLE IF NOT EXISTS `projects` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `number` int(11) NOT NULL,
@@ -173,4 +170,126 @@ INSERT INTO `projects` (`id`, `number`, `name`, `description`, `startdate`, `end
 (7, 10, 'Moby Dick', 'Starbucks ', '2012-01-11', '0000-00-00'),
 (8, 3, 'Survivor', 'Manila style', '2012-01-04', '0000-00-00');
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `raised`
+--
+
+CREATE TABLE IF NOT EXISTS `raised` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `raised`
+--
+
+INSERT INTO `raised` (`id`, `value`) VALUES
+(1, 'No'),
+(2, 'Yes, with a concrete slab'),
+(3, 'Yes, with bamboo'),
+(4, 'Yes, with wood'),
+(5, 'Yes, with a steel platform'),
+(6, 'Yes, with cinder blocks'),
+(7, 'Yes, with something else not listed here');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roof`
+--
+
+CREATE TABLE IF NOT EXISTS `roof` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `roof`
+--
+
+INSERT INTO `roof` (`id`, `value`) VALUES
+(1, 'Concrete'),
+(2, 'Light materials'),
+(3, 'Metal'),
+(4, 'Mixed');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `lname` text NOT NULL,
+  `role` tinyint(10) NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `lname`, `role`, `email`, `password`) VALUES
+(1, 'Kaarin', 'Hoff', 3, 'kaarin.hoff@gmail.com', 'superadmin'),
+(2, 'Natalie', 'Wowk', 3, 'natalie.wowk@gmail.com', 'gisis'),
+(3, 'Fname', 'Lname', 1, 'testemail', '1'),
+(4, 'Olivia', 'Lau', 3, 'olau@umich.edu', 'si572'),
+(5, 'Tyson', 'Koenig', 3, 'tmkoenig@umich.edu', 'word');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `waste`
+--
+
+CREATE TABLE IF NOT EXISTS `waste` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `waste`
+--
+
+INSERT INTO `waste` (`id`, `value`) VALUES
+(1, 'garbage collector'),
+(2, 'burning'),
+(3, 'dumping in a public place'),
+(4, 'dumping in water or vicinity');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `water`
+--
+
+CREATE TABLE IF NOT EXISTS `water` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `water`
+--
+
+INSERT INTO `water` (`id`, `value`) VALUES
+(1, 'communal well'),
+(2, 'private faucet'),
+(3, 'river/stream'),
+(4, 'communal water pipe'),
+(5, 'private water seller'),
+(6, 'other');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
