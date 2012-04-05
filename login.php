@@ -2,10 +2,10 @@
 require_once "db.php";
 session_start();
 
-if ( isset($_POST['email']) && isset($_POST['password']) ) 
+if ( isset($_POST['email']) && isset ($_POST['password']) ) 
 {
 	$e = mysql_real_escape_string($_POST['email']);
-	$p = mysql_real_escape_string ($_POST['password']);
+	$p = (md5(mysql_real_escape_string ($_POST['password'])));
 	$sql = "SELECT name FROM users
 			WHERE email = '$e' AND password = '$p'";
 	$result = mysql_query ($sql);
@@ -51,5 +51,7 @@ require 'includes/header.ssi';
 <tr><td><b>Password:</b></td><td><input type="password" name ="password"></td><tr>
 <tr><td></td><td><input type="submit" value="Login"/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php">Refresh</a></td></tr></table>
 </form>
+
+Forget your password? Contact your administrator or nwowk at umich.edu
 </body>
 </html>

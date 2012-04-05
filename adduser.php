@@ -4,12 +4,12 @@ session_start();
 require 'includes/guard3.ssi';
 
 if ( isset($_POST['name']) && isset($_POST['lname']) 
-	&& isset($_POST['email']) && isset($_POST['password'])&& isset($_POST['role'])) 
+	&& isset($_POST['email']) && isset ($_POST['password']) && isset($_POST['role'])) 
 	{
 	$a = mysql_real_escape_string($_POST['name']);
 	$b = mysql_real_escape_string($_POST['lname']);
 	$c = mysql_real_escape_string($_POST['email']);
-	$d = mysql_real_escape_string($_POST['password']);
+	$d = md5(mysql_real_escape_string($_POST['password']));
 	$e = mysql_real_escape_string($_POST['role']);
 	if (is_numeric($e)){
 	$sql = "INSERT INTO users (name, lname, email, password, role) 
