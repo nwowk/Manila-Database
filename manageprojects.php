@@ -23,9 +23,9 @@ if ( isset($_SESSION['success']) ) {
     unset($_SESSION['success']);
 }
 
-$result = mysql_query("SELECT number, name, description, startdate, enddate, id FROM projects");
+$result = mysql_query("SELECT number, name, description, startdate, enddate, id FROM projects ORDER BY number");
 ?>
-<table border="1"><tr>
+<table><tr>
 <td><strong>Project Number</strong></td>
 <td><strong>Project Name</strong></td>
 <td><strong>Description</strong></td>

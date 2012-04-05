@@ -8,6 +8,11 @@ require 'includes/header.ssi';
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+<title>Manila Database</title>
+<link href="main.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+      
+</style>
 <!-- Google maps scripts----------------------------------------------------------------------------------------->
    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
     <script src="includes/gen_validatorv4.js" type="text/javascript"></script>
@@ -205,7 +210,7 @@ if ( isset($_SESSION['success']) ) {
     unset($_SESSION['success']);
 }
 ?>
-<table>
+<table width="100%" border="0" class="float">
 <tr><td>
 <p>Choose your search below. You may search the database only in aggregate form, that is you will see summary 
 statistics for survey answers aggregated by district. You may limit your results to a particular district or profile. </p>

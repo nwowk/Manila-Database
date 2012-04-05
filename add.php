@@ -2,6 +2,7 @@
 require_once "db.php";
 session_start();
 require 'includes/guardgeneral.ssi';
+require 'includes/header.ssi';
 
 //This part checks to see whether the form has been filled.
 if ( isset($_POST['project_id']) 
@@ -49,7 +50,7 @@ if ( isset($_POST['project_id'])
    $dte = date("Y-m-d");
    $sql = "INSERT INTO households (project_id, district, lat, lon, buildingtype_id, stories, 
 	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
-	      water_id, contact_id, HOHgender, HOHage, date) VALUES 
+	      water_id, contact_id, HOHgender, HOHage, date) VALUES
 	      ('$pid', '$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
 	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age', '$dte')";
    mysql_query($sql);
@@ -59,7 +60,7 @@ if ( isset($_POST['project_id'])
    header( 'Location: verify.php' ) ;
    return;
 }
-require 'includes/header.ssi';
+
 
 ?>
 
@@ -70,7 +71,6 @@ require 'includes/header.ssi';
     <script src="includes/gen_validatorv4.js" type="text/javascript"></script>
 
 <title>Manila Database</title>
-<link href="main.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
       
 </style>
@@ -111,7 +111,7 @@ require 'includes/header.ssi';
 <!--This part is the form where users can enter household information.-->
 
 
-<h1>Add a household to the database.</h1>
+<h1>Add a household to the database, <?php echo $_SESSION['name']; ?>.</h1>
 <table width="100%" border="0" class="float">
 <tr>
 <td colspan="2">

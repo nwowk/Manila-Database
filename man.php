@@ -15,7 +15,7 @@ require 'includes/header.ssi';
 <?php
 $result = mysql_query("SELECT number, name, description, id FROM projects");
 ?>
-<table border="1"><tr>
+<table><tr>
 <td><strong>Project Number</strong></td>
 <td><strong>Project Name</strong></td>
 <td><strong>Description</strong></td>
