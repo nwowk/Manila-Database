@@ -6,9 +6,9 @@ require 'includes/guardgeneral.ssi';
 //This part checks to see whether the form has been filled.
 $id = mysql_real_escape_string($_SESSION['lasthhld']);
 if ( isset($_POST['btnupdate']) 
-/*   && isset($_POST['district']) 
-//   && isset($_POST['lat']) 
-//   && isset($_POST['lon']) 
+     && isset($_POST['district']) 
+     && isset($_POST['lat']) 
+     && isset($_POST['lon']) 
      && isset($_POST['buildingtype_id']) 
      && isset($_POST['stories'])
      && isset($_POST['raised_id'])
@@ -26,7 +26,7 @@ if ( isset($_POST['btnupdate'])
      && isset($_POST['HOHgender']) 
 //   && isset($_POST['users_id']) 
      && isset($_POST['HOHage'])
-     && isset($_POST['date']) */
+     && isset($_POST['date'])
      )     
 {
 
@@ -69,17 +69,23 @@ if ( isset($_POST['btnupdate'])
 	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age','$dte')";
 	       */
    mysql_query($sql);
-   $_SESSION['success'] = 'Record Updated';
-//   echo  "here...";
+   $_SESSION['success'] = 'Record Updated'; 
+//   echo  "here..."; 
    $_SESSION ['lasthhld'] = $id;
    header( 'Location: verify.php' ) ;
    return;	
 }
 
 
-$result = mysql_query("SELECT project_id, district, lat, lon, buildingtype_id, stories, raised_id, 
-		  roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
-	      water_id, contact_id, HOHgender, HOHage, id FROM households WHERE id='$id'");
+$result = mysql_query("SELECT households.project_id, households.district, households.lat, households.lon, 
+          buildingtype.value, households.stories, raised.value, roof.value, households.HHLDsize, 
+          households.young, households.old, households.dependents, income.value, households.evacuation, 
+          households.training, waste.value, water.value, contact.value, households.HOHgender, 
+          households.HOHage FROM households JOIN buildingtype JOIN raised JOIN roof JOIN income
+          JOIN waste JOIN water JOIN contact on households.buildingtype_id = buildingtype.id and
+          households.raised_id = raised.id and households.roof_id = roof.id and households.income_id = 
+          income.id and households.waste_id =  waste.id and households.water_id = water.id and 
+          households.contact_id = contact.id WHERE households.id = '$id'");
 if ( $result == FALSE ) {
     $_SESSION['error'] = 'Bad value for id';
     return;    
@@ -126,76 +132,78 @@ require 'includes/header.ssi';
 echo <<< _END
 
 <h1>Confirm Record</h1>
-<p>This is your <em>only</em> opportunity to make changes to this entry. If you need to change a field, make the change and click "Update entry." If everything is correct, click "Looks good! I want to add another household."
-<form method="post">
+<p>This is your <em>only</em> opportunity to review this entry. If everything is correct, click "Looks good! I want to add another household." Otherwise, delete the entry and start over.
 <table>
 <tr>
-<td>Project #</td>
-<td><input type="text" name="project_id" value="$pid"></td>
+<td>Project #:</td>
+<td>$pid</td>
 </tr><tr>
 <td>District:</td>
-<td><input type="text" name="district" value="$dis"></td>
+<td>$dis</td>
 </tr><tr>
 <td>Lat:</td>
-<td><input type="text" name="lat" value="$lat"></td>
+<td>$lat</td>
 </tr><tr>
 <td>Lon:</td>
-<td><input type="text" name="lon" value="$lon"></td>
+<td>$lon</td>
 </tr><tr>
 <td>Building Type:</td>
-<td><input type="text" name="buildingtype_id" value="$bld"></td>
+<td>$bld</td>
 </tr><tr>
 <td>Stories:</td>
-<td><input type="text" name="stories" value="$sto"></td>
+<td>$sto</td>
 </tr><tr>
 <td>Raised:</td>
-<td><input type="text" name="raised_id" value="$rsd"></td>
+<td>$rsd</td>
 </tr><tr>
 <td>Roof Type:</td>
-<td><input type="text" name="roof_id" value="$rof"></td>
+<td>$rof</td>
 </tr><tr>
 <td>Household Size:</td>
-<td><input type="text" name="HHLDsize" value="$siz"></td>
+<td>$siz</td>
 </tr><tr>
 <td>Age Under 6:</td>
-<td><input type="text" name="young" value="$yng"></td>
+<td>$yng</td>
 </tr><tr>
 <td>Age Over 60:</td>
-<td><input type="text" name="old" value="$old"></td>
+<td>$old</td>
 </tr><tr>
 <td>Adult Dependents:</td>
-<td><input type="text" name="dependents" value="$dep"></td>
+<td>$dep</td>
 </tr><tr>
 <td>Income:</td>
-<td><input type="text" name="income_id" value="$inc"></td>
+<td>$inc</td>
 </tr><tr>
 <td>Evacuation:</td>
-<td><input type="text" name="evacuation" value="$eva"></td>
+<td>$eva</td>
 </tr><tr>
 <td>Training:</td>
-<td><input type="text" name="training" value="$tra"></td>
+<td>$tra</td>
 </tr><tr>
 <td>Waste Disposal:</td>
-<td><input type="text" name="waste_id" value="$was"></td>
+<td>$was</td>
 </tr><tr>
 <td>Water Source:</td>
-<td><input type="text" name="water_id" value="$wtr"></td>
+<td>$wtr</td>
 </tr><tr>
 <td>Contact:</td>
-<td><input type="text" name="contact_id" value="$con"></td>
+<td>$con</td>
 </tr><tr>
 <td>HOH gender:</td>
-<td><input type="text" name="HOHgender" value="$gen"></td>
+<td>$gen</td>
 </tr><tr>
 <td>HOH age:</td>
-<td><input type="text" name="HOHage" value="$age"></td>
-</tr><tr>
+<td>$age</td>
+</tr>
+<form method="post" name="add">
+<tr>
 <input type="hidden" name="id" value="$id">
-</tr><tr>
-<p><input type="submit" name="btnupdate" value="Update entry"/>
-</p>
+</tr>
+<!-- <p><input type="submit" name="btnupdate" value="Update entry"/>
+</p> -->
 </form>
 <p><a href="add.php">Looks good! I want to add another household.</a></p>
+<p><a href="delete.php?id=$id">No, I want to delete this entry and start over.</a><p>
 _END;
 ?>
 </body>
