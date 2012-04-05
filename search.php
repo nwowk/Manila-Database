@@ -8,6 +8,39 @@ require 'includes/header.ssi';
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+<!-- Google maps scripts----------------------------------------------------------------------------------------->
+   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+    <script src="includes/gen_validatorv4.js" type="text/javascript"></script>
+   <div id="map"> <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyApkROPBq0A2ouQEFyaSm_xQi0BrENUC20&sensor=false">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var myOptions = {
+          center: new google.maps.LatLng(14.671171,121.110851),
+          zoom: 18,
+          mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+		var layer = new google.maps.FusionTablesLayer({
+			query: {
+				select: 'geometry',
+				from: '3024596'
+			}
+		});
+		layer.setMap(map);	
+      }
+
+      function validateForm() {
+	var a=document.forms["add"]["district"].value;
+	if (a==null || a=="") {
+		alert("First district id must be filled out");
+  		return false;
+  	}
+	return true;
+	}
+    </script> </div>
 <?php //prepare the CSV table for the "get all districts" query. ---------------------------------------------------------
 $fields="District</th>
 		<th>Households</th>
@@ -31,6 +64,12 @@ $fields="District</th>
 		<th>Under 6</th>
 		<th>Over 60</th>
 		<th>Dependents</th>
+		<th>Income 1</th>
+		<th>Income 2</th>
+		<th>Income 3</th>
+		<th>Income 4</th>
+		<th>Income 5</th>
+		<th>Income N/A</th>
 		<th>Evac plan</th>
 		<th>Training</th>
 		<th>Garbage Collector</th>
@@ -87,6 +126,12 @@ $csv_output="";
 		SUM(CASE contact_id WHEN 2 THEN '1' ELSE '0' END) AS 'contact2',
 		SUM(CASE contact_id WHEN 3 THEN '1' ELSE '0' END) AS 'contact3',
 		SUM(CASE contact_id WHEN 4 THEN '1' ELSE '0' END) AS 'contact4',
+		SUM(CASE income_id WHEN 1 THEN '1' ELSE '0' END) AS 'income1',
+		SUM(CASE income_id WHEN 2 THEN '1' ELSE '0' END) AS 'income2',
+		SUM(CASE income_id WHEN 3 THEN '1' ELSE '0' END) AS 'income3',
+		SUM(CASE income_id WHEN 4 THEN '1' ELSE '0' END) AS 'income4',
+		SUM(CASE income_id WHEN 5 THEN '1' ELSE '0' END) AS 'income5',
+		SUM(CASE income_id WHEN 6 THEN '1' ELSE '0' END) AS 'income6',
 		ROUND(AVG(HOHage),1) AS 'avghohage', SUM(HOHgender) as 'gender'
 		FROM households 
 		WHERE HHLDsize > 0
@@ -117,6 +162,12 @@ while($row = mysql_fetch_array($result)){
 	"</td><td>". round($row['young']/$row['population']*100)."%".
 	"</td><td>". round($row['old']/$row['population']*100)."%".
 	"</td><td>". round($row['dependents']/$row['population']*100)."%".
+	"</td><td>". round($row['income1']/$row['households']*100)."%".
+	"</td><td>". round($row['income2']/$row['households']*100)."%".
+	"</td><td>". round($row['income3']/$row['households']*100)."%".
+	"</td><td>". round($row['income4']/$row['households']*100)."%".
+	"</td><td>". round($row['income5']/$row['households']*100)."%".
+	"</td><td>". round($row['income6']/$row['households']*100)."%".
 	"</td><td>". round($row['evacuation']/$row['households']*100)."%".
 	"</td><td>". round($row['training']/$row['households']*100)."%".
 	"</td><td>". round($row['waste1']/$row['households']*100)."%".
@@ -141,7 +192,7 @@ while($row = mysql_fetch_array($result)){
 }//closes while loop that moves through query results rows------------------------------------------------------------------
 ?>
 </head>
-<body id="home">
+<body id="homewide" onload="initialize()">
 <h1>Search</h1>
 <?php
 //Checks to see if there are any error or success messages to display-------------------------------------------------------
@@ -154,6 +205,8 @@ if ( isset($_SESSION['success']) ) {
     unset($_SESSION['success']);
 }
 ?>
+<table>
+<tr><td>
 <p>Choose your search below. You may search the database only in aggregate form, that is you will see summary 
 statistics for survey answers aggregated by district. You may limit your results to a particular district or profile. </p>
 <form action = "result.php" target ="_blank" method="post">
@@ -172,5 +225,8 @@ statistics for survey answers aggregated by district. You may limit your results
     <button type="submit" value="getall">Get all districts in a .csv file</button> 
     <input type="hidden" value="<? echo $csv_output; ?>" name="csv_output">
 </form>
+</td><td>
+<div id="map_canvas" style="width:100% height:100%"></div>
+</td></tr></table>
 </body>
 </html>

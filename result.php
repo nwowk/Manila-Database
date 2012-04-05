@@ -50,6 +50,12 @@ $fields="District</th>
 		<th>Under 6</th>
 		<th>Over 60</th>
 		<th>Dependents</th>
+		<th>Income 1</th>
+		<th>Income 2</th>
+		<th>Income 3</th>
+		<th>Income 4</th>
+		<th>Income 5</th>
+		<th>Income N/A</th>
 		<th>Evac plan</th>
 		<th>Training</th>
 		<th>Garbage Collector</th>
@@ -108,6 +114,12 @@ if ( isset($_POST['district'])) {
 		SUM(CASE contact_id WHEN 2 THEN '1' ELSE '0' END) AS 'contact2',
 		SUM(CASE contact_id WHEN 3 THEN '1' ELSE '0' END) AS 'contact3',
 		SUM(CASE contact_id WHEN 4 THEN '1' ELSE '0' END) AS 'contact4',
+		SUM(CASE income_id WHEN 1 THEN '1' ELSE '0' END) AS 'income1',
+		SUM(CASE income_id WHEN 2 THEN '1' ELSE '0' END) AS 'income2',
+		SUM(CASE income_id WHEN 3 THEN '1' ELSE '0' END) AS 'income3',
+		SUM(CASE income_id WHEN 4 THEN '1' ELSE '0' END) AS 'income4',
+		SUM(CASE income_id WHEN 5 THEN '1' ELSE '0' END) AS 'income5',
+		SUM(CASE income_id WHEN 6 THEN '1' ELSE '0' END) AS 'income6',
 		ROUND(AVG(HOHage),1) AS 'avghohage', SUM(HOHgender) as 'gender'
 		FROM households
 		WHERE HHLDsize > 0 AND district='$district'
@@ -145,6 +157,12 @@ while($row = mysql_fetch_array($result)){
 	"</td><td>". round($row['young']/$row['population']*100)."%".
 	"</td><td>". round($row['old']/$row['population']*100)."%".
 	"</td><td>". round($row['dependents']/$row['population']*100)."%".
+	"</td><td>". round($row['income1']/$row['households']*100)."%".
+	"</td><td>". round($row['income2']/$row['households']*100)."%".
+	"</td><td>". round($row['income3']/$row['households']*100)."%".
+	"</td><td>". round($row['income4']/$row['households']*100)."%".
+	"</td><td>". round($row['income5']/$row['households']*100)."%".
+	"</td><td>". round($row['income6']/$row['households']*100)."%".
 	"</td><td>". round($row['evacuation']/$row['households']*100)."%".
 	"</td><td>". round($row['training']/$row['households']*100)."%".
 	"</td><td>". round($row['waste1']/$row['households']*100)."%".
@@ -205,6 +223,12 @@ if ( isset($_POST['project'])) {
 		SUM(CASE contact_id WHEN 2 THEN '1' ELSE '0' END) AS 'contact2',
 		SUM(CASE contact_id WHEN 3 THEN '1' ELSE '0' END) AS 'contact3',
 		SUM(CASE contact_id WHEN 4 THEN '1' ELSE '0' END) AS 'contact4',
+		SUM(CASE income_id WHEN 1 THEN '1' ELSE '0' END) AS 'income1',
+		SUM(CASE income_id WHEN 2 THEN '1' ELSE '0' END) AS 'income2',
+		SUM(CASE income_id WHEN 3 THEN '1' ELSE '0' END) AS 'income3',
+		SUM(CASE income_id WHEN 4 THEN '1' ELSE '0' END) AS 'income4',
+		SUM(CASE income_id WHEN 5 THEN '1' ELSE '0' END) AS 'income5',
+		SUM(CASE income_id WHEN 6 THEN '1' ELSE '0' END) AS 'income6',
 		ROUND(AVG(HOHage),1) AS 'avghohage', SUM(HOHgender) as 'gender'
 		FROM households
 		WHERE HHLDsize > 0 AND project_id='$project'
@@ -242,6 +266,12 @@ while($row = mysql_fetch_array($result)){
 	"</td><td>". round($row['young']/$row['population']*100)."%".
 	"</td><td>". round($row['old']/$row['population']*100)."%".
 	"</td><td>". round($row['dependents']/$row['population']*100)."%".
+	"</td><td>". round($row['income1']/$row['households']*100)."%".
+	"</td><td>". round($row['income2']/$row['households']*100)."%".
+	"</td><td>". round($row['income3']/$row['households']*100)."%".
+	"</td><td>". round($row['income4']/$row['households']*100)."%".
+	"</td><td>". round($row['income5']/$row['households']*100)."%".
+	"</td><td>". round($row['income6']/$row['households']*100)."%".
 	"</td><td>". round($row['evacuation']/$row['households']*100)."%".
 	"</td><td>". round($row['training']/$row['households']*100)."%".
 	"</td><td>". round($row['waste1']/$row['households']*100)."%".
