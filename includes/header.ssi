@@ -4,9 +4,9 @@
 </style>
 
 <div id="header">
-<a name="top"></a>
+
   <div id="logo"><img src="images/CDP3DLogo.jpg" width="170px"/></div>
-	<h1>Manila Database
+	<h1>Manila Database</h1>
 <?php
 { ?>
 	<div id='logout'>
@@ -14,7 +14,6 @@
 	</div>
 	<?php }
 ?>
-	</h1>
 <div id="body_nav">
 <ol id="main_nav">
 <?php
