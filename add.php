@@ -46,7 +46,6 @@ if ( isset($_POST['project_id'])
    $con = mysql_real_escape_string($_POST['contact_id']);
    $gen = mysql_real_escape_string($_POST['HOHgender']);
    $age = mysql_real_escape_string($_POST['HOHage']);
-// $usr = mysql_real_escape_string($_POST['user_id']);
    $dte = date("Y-m-d");
    $sql = "INSERT INTO households (project_id, district, lat, lon, buildingtype_id, stories, 
 	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
