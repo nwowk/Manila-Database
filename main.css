@@ -32,6 +32,7 @@ table td{
 	vertical-align: top;
 	text-align: left;
 	border-collapse:collapse;
+	padding: 8px;
 	}
 table.small {
 	width:200px;
