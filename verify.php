@@ -5,7 +5,7 @@ require 'includes/guardgeneral.ssi';
 
 //This part checks to see whether the form has been filled.
 $id = mysql_real_escape_string($_SESSION['lasthhld']);
-if ( isset($_POST['btnupdate']) 
+/*if ( isset($_POST['btnupdate']) 
      && isset($_POST['project_id'])
      && isset($_POST['district']) 
      && isset($_POST['lat']) 
@@ -68,7 +68,7 @@ if ( isset($_POST['btnupdate'])
 	      water_id, contact_id, HOHgender, HOHage, date) VALUES 
 	      ('$pid','$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
 	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age','$dte')";
-	       */
+	       
    mysql_query($sql);
    $_SESSION['success'] = 'Record Updated'; 
 //   echo  "here..."; 
@@ -77,16 +77,18 @@ if ( isset($_POST['btnupdate'])
    return;	
 }
 
-
-$result = mysql_query("SELECT projects.name, households.district, households.lat, households.lon, 
+*/
+$query= "SELECT projects.name, households.district, households.lat, households.lon, 
           buildingtype.value, households.stories, raised.value, roof.value, households.HHLDsize, 
           households.young, households.old, households.dependents, income.value, households.evacuation, 
           households.training, waste.value, water.value, contact.value, households.HOHgender, 
           households.HOHage FROM households JOIN projects JOIN buildingtype JOIN raised JOIN roof JOIN income
-          JOIN waste JOIN water JOIN contact on households.project_id = projects.id and households.buildingtype_id = buildingtype.id and
+          JOIN waste JOIN water JOIN contact on households.project_id = projects.id and households.buildingtype_id =    
+          buildingtype.id and
           households.raised_id = raised.id and households.roof_id = roof.id and households.income_id = 
           income.id and households.waste_id =  waste.id and households.water_id = water.id and 
-          households.contact_id = contact.id WHERE households.id = '$id'");
+          households.contact_id = contact.id WHERE households.id = '$id'";
+$result = mysql_query($query);
 if ( $result == FALSE ) {
     $_SESSION['error'] = 'Bad value for id';
     return;    
@@ -224,6 +226,8 @@ echo "Female" ?> </td>
 </p> -->
 </form>
 <p><a href="add.php">Looks good! I want to add another household.</a></p>
-<p><a href="delete.php?id=$id">No, I want to delete this entry and start over.</a><p>
+<?php
+echo("<p><a href='delete.php?id=".$id."'>No, I want to delete this entry and start over.</a><p>");
+?>
 </body>
 </html>

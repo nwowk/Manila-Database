@@ -27,8 +27,17 @@ if ( $row == FALSE ) {
     $_SESSION['error'] = 'Bad value for id';
     header( 'Location: index.php' ) ;
     return;
-require 'includes/header.ssi';
 }
+require 'includes/header.ssi';
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body  id="home">
+<h1>Delete Entry</h1>
+<?php
 
 echo "<p>Confirm: You want to delete this record and start over by entering a new record.</p>\n";
 echo('<form method="post"><input type="hidden" ');
