@@ -30,7 +30,7 @@ if ( $row == FALSE ) {
 require 'includes/header.ssi';
 }
 
-echo "<p>Confirm: Deleting Household.</p>\n";
+echo "<p>Confirm: You want to delete this record and start over by entering a new record.</p>\n";
 echo('<form method="post"><input type="hidden" ');
 echo('name="id" value="'.$row[0].'">'."\n");
 echo('<input type="submit" value="Delete" name="delete">');
