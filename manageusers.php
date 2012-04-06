@@ -24,7 +24,7 @@ if ( isset($_SESSION['success']) ) {
 
 $result = mysql_query("SELECT name, lname, email, password, role, id FROM users");
 ?>
-<table border="1"><tr>
+<table><tr>
 <td><strong>First Name</strong></td>
 <td><strong>Last Name</strong></td>
 <td><strong>Email</strong></td>

@@ -2,7 +2,6 @@
 require_once "db.php";
 session_start();
 require 'includes/guardgeneral.ssi';
-require 'includes/header.ssi';
 
 //This part checks to see whether the form has been filled.
 if ( isset($_POST['project_id']) 
@@ -60,7 +59,7 @@ if ( isset($_POST['project_id'])
    return;
 }
 
-
+require 'includes/header.ssi';
 ?>
 
 <!DOCTYPE html> 
@@ -141,13 +140,13 @@ if ( isset($_POST['project_id'])
 <td><input type="text" name="stories"></td></tr>
 <tr><td>Has the building been elevated or raised up from the ground?</td>
 <td>
-<input type="radio" name="raised_id" value="0">No</br>
-<input type="radio" name="raised_id" value="1">Yes, with a concrete slab</br>
-<input type="radio" name="raised_id" value="2">Yes, with bamboo</br>
-<input type="radio" name="raised_id" value="3">Yes, with wood</br>
-<input type="radio" name="raised_id" value="4">Yes, with a steel platform</br>
-<input type="radio" name="raised_id" value="5">Yes, with cinder blocks</br>
-<input type="radio" name="raised_id" value="6">Yes, with something else not listed here</br>
+<input type="radio" name="raised_id" value="1">No</br>
+<input type="radio" name="raised_id" value="2">Yes, with a concrete slab</br>
+<input type="radio" name="raised_id" value="3">Yes, with bamboo</br>
+<input type="radio" name="raised_id" value="4">Yes, with wood</br>
+<input type="radio" name="raised_id" value="5">Yes, with a steel platform</br>
+<input type="radio" name="raised_id" value="6">Yes, with cinder blocks</br>
+<input type="radio" name="raised_id" value="7">Yes, with something else not listed here</br>
 </td></tr>
 <tr><td>What is the roof made of?</td>
 <td>
