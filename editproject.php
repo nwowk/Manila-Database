@@ -3,27 +3,23 @@ require_once "db.php";
 session_start();
 require 'includes/guard3.ssi';
 
-if ( isset($_POST['number']) && isset($_POST['name']) 
+//-updates the project data in the database with the values from the user-----------------------------------------
+if ( isset($_POST['name']) 
 	&& isset($_POST['description']) 
-	&& isset($_POST['id']) ) 
-	{
+	&& isset($_POST['startdate'])
+	&& isset($_POST['enddate'])
+	&& isset($_POST['id']) ) {
 	$b = mysql_real_escape_string($_POST['name']);
 	$c = mysql_real_escape_string($_POST['description']);
 	$d = mysql_real_escape_string($_POST['startdate']);
 	$e = mysql_real_escape_string($_POST['enddate']);
-	if (is_numeric($a)){
 	$id = mysql_real_escape_string($_POST['id']);
 	$sql = "UPDATE projects SET name='$b', description='$c', 
 			startdate='$d', enddate='$e' WHERE id=$id"; 
 	mysql_query($sql);
 	$_SESSION['success'] = 'Record Updated';
 	header( 'Location: manageprojects.php' ) ;
-	return;}
-/*	else   
-		{$_SESSION['error']='Values for Access Level should be numeric';
-		header( 'Location: manageusers.php' ) ;
-		return;}
-*/        
+	return;
 }
 
 if ( ! isset($_GET['id']) ) {
@@ -31,6 +27,7 @@ if ( ! isset($_GET['id']) ) {
     header('Location: manageprojects.php');
     return;
 }
+//retrieve existing project data from the database using the GET--------------------------------------------
 $id = mysql_real_escape_string($_GET['id']);
 $result = mysql_query("SELECT name, description, startdate, enddate, id 
     FROM projects WHERE id='$id'");
@@ -55,6 +52,8 @@ require 'includes/header.ssi';
 
 
 </head>
+
+<!---here's the form------------------------------------------------------------------------------------------->
 <body  id="home">
 <h1>Edit Project</h1>
 
@@ -63,12 +62,12 @@ echo <<< _END
 <form method="post">
 <p>Project Name:
 <input type="text" name="name" value="$b"></p>
-<p>Project Description:
-<input type="text" name="description" value="$c"></p>
+<p>Project Description:</p><p>
+<textarea type="text" name="description" rows="6">$c</textarea></p>
 <p>Start Date:
-<input type="text" name="startdate" value="$d"></p>
+<input type="text" name="startdate" value="$d"><font color="gray"> YYYY-MM-DD</font></p>
 <p>End Date:
-<input type="text" name="enddate" value="$e"></p>
+<input type="text" name="enddate" value="$e"><font color="gray"> YYYY-MM-DD</font></p>
 <input type="hidden" name="id" value="$id">
 <p><input type="submit" value="Update"/>
 <a href="manageprojects.php">Cancel</a></p>

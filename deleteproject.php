@@ -3,22 +3,24 @@ require_once "db.php";
 session_start();
 require 'includes/guard3.ssi';
 
+//deletes the requested project from the database-------------------------------------------
 if ( isset($_POST['delete']) && isset($_POST['id']) ) {
     $id = mysql_real_escape_string($_POST['id']);
     $sql = "DELETE FROM projects WHERE id = $id";
-//    echo "<pre>\n$sql\n</pre>\n";
     mysql_query($sql);
     $_SESSION['success'] = 'Record Deleted';
     header('Location: manageprojects.php');
     return;
 }
 
+//error message if missing id ----------------------------------------------
 if ( ! isset($_GET['id']) ) {
 	$_SESSION['error'] = 'Missing value for id';
     header('Location: manageprojects.php');
     return;
 }
 
+//-retrieves the id from the GET-----------------------------------------------------
 $id = mysql_real_escape_string($_GET['id']);
 $result = mysql_query("SELECT name, id FROM projects WHERE id='$id'");
 $row = mysql_fetch_row($result);
@@ -38,10 +40,10 @@ require 'includes/header.ssi';
 <body  id="home">
 <h1>Delete Project</h1>
 <?php
-echo "<p>Confirm: Deleting Project ".htmlentities($row[0])."</p>\n";
+echo "<p>Confirm: Deleting Project: ".htmlentities($row[0])."</p>\n";
 
 echo('<form method="post"><input type="hidden" ');
-echo('name="id" value=".htmlentities($row[1]).">'."\n");
+echo('name="id" value='.htmlentities($row[1]).'>');
 echo('<input type="submit" value="Delete" name="delete">');
 echo('<a href="manageprojects.php">Cancel</a>');
 echo("\n</form>\n");
