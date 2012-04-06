@@ -160,15 +160,15 @@ CREATE TABLE IF NOT EXISTS `projects` (
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `number`, `name`, `description`, `startdate`, `enddate`) VALUES
-(1, 5, 'Wall-E', 'Search for life', '2012-01-01', '2012-03-30'),
-(2, 1, 'Lumpia', 'Led by Inspector Gadget. New lumpia vendor changes profile of district', '2011-10-10', '2012-06-30'),
-(3, 7, 'Where in the World?', 'Searching for Carmen Sandiego and her villians', '2012-02-03', '0000-00-00'),
-(4, 2, 'Local feedback', 'Health evaluation led by Wall-E', '2012-02-01', '0000-00-00'),
-(5, 5, 'Housing', 'Building investigation. Led by Cookie Monster', '2011-11-30', '0000-00-00'),
-(6, 8, 'Santorum', 'voter fraud', '2011-10-10', '0000-00-00'),
-(7, 10, 'Moby Dick', 'Starbucks ', '2012-01-11', '0000-00-00'),
-(8, 3, 'Survivor', 'Manila style', '2012-01-04', '0000-00-00');
+INSERT INTO `projects` (`id`, `name`, `description`, `startdate`, `enddate`) VALUES
+(1, 'Wall-E', 'Search for life', '2012-01-01', '2012-03-30'),
+(2, 'Lumpia', 'Led by Inspector Gadget. New lumpia vendor changes profile of district', '2011-10-10', '2012-06-30'),
+(3, 'Where in the World?', 'Searching for Carmen Sandiego and her villians', '2012-02-03', '0000-00-00'),
+(4, 'Local feedback', 'Health evaluation led by Wall-E', '2012-02-01', '0000-00-00'),
+(5, 'Housing', 'Building investigation. Led by Cookie Monster', '2011-11-30', '0000-00-00'),
+(6, 'Santorum', 'voter fraud', '2011-10-10', '0000-00-00'),
+(7, 'Moby Dick', 'Starbucks ', '2012-01-11', '0000-00-00'),
+(8, 'Survivor', 'Manila style', '2012-01-04', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -238,11 +238,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lname`, `role`, `email`, `password`) VALUES
-(1, 'Kaarin', 'Hoff', 3, 'kaarin.hoff@gmail.com', 'superadmin'),
-(2, 'Natalie', 'Wowk', 3, 'natalie.wowk@gmail.com', 'gisis'),
-(3, 'Fname', 'Lname', 1, 'testemail', '1'),
-(4, 'Olivia', 'Lau', 3, 'olau@umich.edu', 'si572'),
-(5, 'Tyson', 'Koenig', 3, 'tmkoenig@umich.edu', 'word');
+(1, 'Bob', 'Builder', 3, 'builder@umich.edu', '202cb962ac59075b964b07152d234b70');
+
 
 -- --------------------------------------------------------
 
@@ -290,6 +287,3 @@ INSERT INTO `water` (`id`, `value`) VALUES
 (5, 'private water seller'),
 (6, 'other');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

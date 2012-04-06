@@ -120,9 +120,20 @@ require 'includes/header.ssi';
 <table border="0">
 
 <tr>
+<tr>
 <tr><td>What is the project number?</td>
-<td><div id='add_project_id_errorloc' class='error_strings'></div>
-<input type="text" name="project_id"></td></tr>
+<td>
+<!-- http://stackoverflow.com/questions/6033570/display-data-from-sql-database-in-a-drop-down-menu-->
+<select name = 'project_id' id = 'project_id'>
+<?php
+    $p_result = mysql_query("SELECT name, id FROM projects");
+    while ( $row = mysql_fetch_row($p_result) ) {
+	echo ("<option value = '" . $row['1'] . "'>" . $row['0'] . "</option>");
+    }
+?>
+</select>
+
+</td></tr>
 <td width="50%">What is the district ID?</td>
 <td width="50%"><div id='add_district_errorloc' class='error_strings'></div>
 <input type="text" name="district"></td></tr> 
