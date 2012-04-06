@@ -148,7 +148,6 @@ INSERT INTO `income` (`id`, `value`) VALUES
 
 CREATE TABLE IF NOT EXISTS `projects` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `number` int(11) NOT NULL,
   `name` text NOT NULL,
   `description` text NOT NULL,
   `startdate` date NOT NULL,
