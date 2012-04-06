@@ -125,7 +125,7 @@ require 'includes/header.ssi';
 <td>
 <select name = 'project_id' id = 'project_id'>
 <?php
-    $p_result = mysql_query("SELECT name, id FROM projects");
+    $p_result = mysql_query("SELECT name, id FROM projects ORDER BY name");
     while ( $row = mysql_fetch_row($p_result) ) {
 	echo ("<option value = '" . $row['1'] . "'>" . $row['0'] . "</option>");
     }
