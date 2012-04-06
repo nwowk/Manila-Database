@@ -5,19 +5,17 @@ require 'includes/guard23.ssi';
 
 
 if ( isset($_POST['number']) 
-	&& isset($_POST['name']) 
 	&& isset($_POST['description'])
 	&& isset($_POST['startdate'])
 	&& isset($_POST['enddate'])) 
 	{
-	$a = mysql_real_escape_string($_POST['number']);
 	$b = mysql_real_escape_string($_POST['name']);
 	$c = mysql_real_escape_string($_POST['description']);
 	$d = mysql_real_escape_string($_POST['startdate']);
 	$e = mysql_real_escape_string($_POST['enddate']);
 	if (is_numeric($a)){
 	$sql = "INSERT INTO projects (number, name, description, startdate, enddate) 
-		VALUES ('$a', '$b', '$c', '$d', '$e')";
+		VALUES ('$b', '$c', '$d', '$e')";
 	mysql_query($sql);
 	$_SESSION['success'] = 'Record Added';
 	header( 'Location: manageprojects.php' ) ;
@@ -45,7 +43,6 @@ require 'includes/header.ssi';
 <form method="post" name="addproject">
 <table>
 <div id='addproject_number_errorloc' class='error_strings'></div>
-<tr><td>Project Number:</td><td> <input type="text" name="number"/></td></tr>
 <tr><td>Project Name:</td><td> <input type="text" name="name"/></td></tr>
 <tr><td>Project Description:</td><td> <textarea type="text" name="description" rows="6"></textarea></td></tr>
 <tr><td>Start Date:</td><td> <input type="text" name="startdate"/></td></tr>
@@ -60,7 +57,6 @@ require 'includes/header.ssi';
  frmvalidator.EnableOnPageErrorDisplay();
  frmvalidator.EnableMsgsTogether();
 
-  frmvalidator.addValidation("number","numeric","Project Number must be a number");
 </script>
 
 </body>

@@ -20,7 +20,7 @@ if ( ! isset($_GET['id']) ) {
 }
 
 $id = mysql_real_escape_string($_GET['id']);
-$result = mysql_query("SELECT number, name, id FROM projects WHERE id='$id'");
+$result = mysql_query("SELECT name, id FROM projects WHERE id='$id'");
 $row = mysql_fetch_row($result);
 if ( $row == FALSE ) {
 	$_SESSION['error'] = 'Bad value for id';
@@ -41,7 +41,7 @@ require 'includes/header.ssi';
 echo "<p>Confirm: Deleting Project ".htmlentities($row[0])."</p>\n";
 
 echo('<form method="post"><input type="hidden" ');
-echo('name="id" value="'.htmlentities($row[2]).'">'."\n");
+echo('name="id" value=".htmlentities($row[1]).">'."\n");
 echo('<input type="submit" value="Delete" name="delete">');
 echo('<a href="manageprojects.php">Cancel</a>');
 echo("\n</form>\n");

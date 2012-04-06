@@ -7,14 +7,13 @@ if ( isset($_POST['number']) && isset($_POST['name'])
 	&& isset($_POST['description']) 
 	&& isset($_POST['id']) ) 
 	{
-	$a = mysql_real_escape_string($_POST['number']);
 	$b = mysql_real_escape_string($_POST['name']);
 	$c = mysql_real_escape_string($_POST['description']);
 	$d = mysql_real_escape_string($_POST['startdate']);
 	$e = mysql_real_escape_string($_POST['enddate']);
 	if (is_numeric($a)){
 	$id = mysql_real_escape_string($_POST['id']);
-	$sql = "UPDATE projects SET number='$a', name='$b', description='$c', 
+	$sql = "UPDATE projects SET name='$b', description='$c', 
 			startdate='$d', enddate='$e' WHERE id=$id"; 
 	mysql_query($sql);
 	$_SESSION['success'] = 'Record Updated';
@@ -33,7 +32,7 @@ if ( ! isset($_GET['id']) ) {
     return;
 }
 $id = mysql_real_escape_string($_GET['id']);
-$result = mysql_query("SELECT number, name, description, startdate, enddate, id 
+$result = mysql_query("SELECT name, description, startdate, enddate, id 
     FROM projects WHERE id='$id'");
 $row = mysql_fetch_row($result);
 if ( $row == FALSE ) {
@@ -41,11 +40,10 @@ if ( $row == FALSE ) {
     header('Location: manageprojects.php');
     return;
 }
-$a = htmlentities($row[0]);
-$b = htmlentities($row[1]);
-$c = htmlentities($row[2]);
-$d = htmlentities($row[3]);
-$e = htmlentities($row[4]);
+$b = htmlentities($row[0]);
+$c = htmlentities($row[1]);
+$d = htmlentities($row[2]);
+$e = htmlentities($row[3]);
 
 require 'includes/header.ssi';
 
@@ -63,8 +61,6 @@ require 'includes/header.ssi';
 <?php
 echo <<< _END
 <form method="post">
-<p>Project Number:
-<input type="text" name="number" value="$a"></p>
 <p>Project Name:
 <input type="text" name="name" value="$b"></p>
 <p>Project Description:
