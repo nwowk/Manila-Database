@@ -42,18 +42,16 @@ require 'includes/header.ssi';
 <tr><td>Email:</td><td> <input type="text" name="email"></td></tr>
 <tr><td>Password:</td><td> <input type="password" name="password"></td></tr>
 <tr><td>Access Level:</td>
-<td><div id='adduser_role_errorloc' class='error_strings'></div>
-<input type="text" name="role"></td></tr>
+<td>
+<input type="radio" name="role" value="1">1 - Data Entry Only</br>
+<input type="radio" name="role" value="2">2 - Project Manager</br>
+<input type="radio" name="role" value="3">3 - Administrator</br>
+
+
 <tr><td><a href="manageusers.php">Cancel</a></td>
 	<td align="right"><input type="submit" value="Add New"/></td></tr>
 </table>
 </form>
-<script type="text/javascript">
-    var frmvalidator = new Validator("adduser");
- frmvalidator.EnableOnPageErrorDisplay();
- frmvalidator.EnableMsgsTogether();
 
-  frmvalidator.addValidation("role","numeric","Access Level must be a number");
-</script>
 </body>
 </html>
