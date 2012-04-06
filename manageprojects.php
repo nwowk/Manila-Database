@@ -38,7 +38,7 @@ $result = mysql_query("SELECT number, name, description, startdate, enddate, id 
 <?php
 while ( $row = mysql_fetch_row($result) ) {
     echo "<tr><td>";
-    echo(htmlentities($row[0]));
+    echo(htmlentities($row[5]));
     echo("</td><td>");
 	echo(htmlentities($row[1]));
     echo("</td><td>");
