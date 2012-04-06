@@ -79,7 +79,7 @@ require 'includes/header.ssi';
       function initialize() {
         var myOptions = {
           center: new google.maps.LatLng(14.671171,121.110851),
-          zoom: 18,
+          zoom: 16,
           mapTypeId: google.maps.MapTypeId.HYBRID
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"),

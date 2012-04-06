@@ -23,7 +23,7 @@ require 'includes/header.ssi';
       function initialize() {
         var myOptions = {
           center: new google.maps.LatLng(14.671171,121.110851),
-          zoom: 18,
+          zoom: 16,
           mapTypeId: google.maps.MapTypeId.HYBRID
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -223,7 +223,7 @@ statistics for survey answers aggregated by district. You may limit your results
 <p>For which project would you like a profile?
 <select name = 'project' id = 'project>
 <?php
-    $p_result = mysql_query("SELECT name, id FROM projects");
+    $p_result = mysql_query("SELECT name, id FROM projects ORDER BY name");
     while ( $row = mysql_fetch_row($p_result) ) {
 	echo ("<option value = '" . $row['1'] . "'>" . $row['0'] . "</option>");
     }
@@ -240,5 +240,8 @@ statistics for survey answers aggregated by district. You may limit your results
 </td><td>
 <div id="map_canvas" style="width:100% height:100%"></div>
 </td></tr></table>
+<h1>Analysis</h1>
+<p>Download the district grid shapefile <a href="images/districtgrid_.zip">here</a>. You can open this file with ArcGIS or an open-source GIS such as <a href="http://hub.qgis.org/projects/quantum-gis/wiki/Download">QGIS</a>. </p>
+<p>Download this <a href="images/grid.kmz">kmz file</a> of the grid, which can be opened in Google Earth.
 </body>
 </html>

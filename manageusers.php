@@ -61,5 +61,6 @@ if ( isset($_SESSION['success']) ) {
 }
 ?>
 <h2><a href="adduser.php">Add New User</a></h2>
+<p>&nbsp;</p>
 </body>
 </html>
