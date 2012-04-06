@@ -221,7 +221,14 @@ statistics for survey answers aggregated by district. You may limit your results
 </form>
 <form action = "result.php" target ="_blank" method="post">
 <p>For which project would you like a profile?
-<input type="text" name="project">
+<select name = 'project' id = 'project>
+<?php
+    $p_result = mysql_query("SELECT name, id FROM projects");
+    while ( $row = mysql_fetch_row($p_result) ) {
+	echo ("<option value = '" . $row['1'] . "'>" . $row['0'] . "</option>");
+    }
+?>
+</select>
 <input type="submit" value="Go"/>
 </form>
 <br>

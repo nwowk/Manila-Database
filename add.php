@@ -109,7 +109,7 @@ require 'includes/header.ssi';
 <!--This part is the form where users can enter household information.-->
 
 
-<h1>Add a household to the database, <?php echo $_SESSION['name']; ?>.</h1>
+<h1>Add a household to the database.</h1>
 <table width="100%" border="0" class="float">
 <tr>
 <td colspan="2">
@@ -121,9 +121,8 @@ require 'includes/header.ssi';
 
 <tr>
 <tr>
-<tr><td>What is the project number?</td>
+<tr><td>What is the project name?</td>
 <td>
-<!-- http://stackoverflow.com/questions/6033570/display-data-from-sql-database-in-a-drop-down-menu-->
 <select name = 'project_id' id = 'project_id'>
 <?php
     $p_result = mysql_query("SELECT name, id FROM projects");
@@ -220,7 +219,7 @@ require 'includes/header.ssi';
 <input type="radio" name="contact_id" value="3">radio</br>
 <input type="radio" name="contact_id" value="4">TV</br>
 </td></tr>
-<tr><td>What is the gender of the head of household? [offer definition]</td>
+<tr><td>What is the gender of the head of household?</td>
 <td>
 <input type="radio" name="HOHgender" value="0">male</br>
 <input type="radio" name="HOHgender" value="1">female</br>
