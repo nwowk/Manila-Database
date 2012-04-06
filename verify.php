@@ -6,6 +6,7 @@ require 'includes/guardgeneral.ssi';
 //This part checks to see whether the form has been filled.
 $id = mysql_real_escape_string($_SESSION['lasthhld']);
 if ( isset($_POST['btnupdate']) 
+     && isset($_POST['project_id'])
      && isset($_POST['district']) 
      && isset($_POST['lat']) 
      && isset($_POST['lon']) 
@@ -77,12 +78,12 @@ if ( isset($_POST['btnupdate'])
 }
 
 
-$result = mysql_query("SELECT households.project_id, households.district, households.lat, households.lon, 
+$result = mysql_query("SELECT projects.name, households.district, households.lat, households.lon, 
           buildingtype.value, households.stories, raised.value, roof.value, households.HHLDsize, 
           households.young, households.old, households.dependents, income.value, households.evacuation, 
           households.training, waste.value, water.value, contact.value, households.HOHgender, 
-          households.HOHage FROM households JOIN buildingtype JOIN raised JOIN roof JOIN income
-          JOIN waste JOIN water JOIN contact on households.buildingtype_id = buildingtype.id and
+          households.HOHage FROM households JOIN projects JOIN buildingtype JOIN raised JOIN roof JOIN income
+          JOIN waste JOIN water JOIN contact on households.project_id = projects.id and households.buildingtype_id = buildingtype.id and
           households.raised_id = raised.id and households.roof_id = roof.id and households.income_id = 
           income.id and households.waste_id =  waste.id and households.water_id = water.id and 
           households.contact_id = contact.id WHERE households.id = '$id'");
@@ -135,7 +136,7 @@ echo <<< _END
 <p>This is your <em>only</em> opportunity to review this entry. If everything is correct, click "Looks good! I want to add another household." Otherwise, delete the entry and start over.
 <table>
 <tr>
-<td>Project #:</td>
+<td>Project Name:</td>
 <td>$pid</td>
 </tr><tr>
 <td>District:</td>
@@ -173,13 +174,27 @@ echo <<< _END
 </tr><tr>
 <td>Income:</td>
 <td>$inc</td>
-</tr><tr>
+</tr>
+_END;
+?>
+
+<tr>
 <td>Evacuation:</td>
-<td>$eva</td>
+<td> <?php if ($eva = 1)
+ echo "Yes, I am aware" ;
+if ($eva=0)
+echo "No, I do not know" ; ?> </td>
 </tr><tr>
 <td>Training:</td>
-<td>$tra</td>
-</tr><tr>
+<td><?php if ($tra = 1)
+ echo "Yes" ;
+if ($tra=0)
+echo "No"  ?> </td>
+</tr>
+
+<?php
+echo <<< _END
+<tr>
 <td>Waste Disposal:</td>
 <td>$was</td>
 </tr><tr>
@@ -188,12 +203,18 @@ echo <<< _END
 </tr><tr>
 <td>Contact:</td>
 <td>$con</td>
-</tr><tr>
+</tr>
+_END;
+?>
+<tr>
 <td>HOH gender:</td>
-<td>$gen</td>
+<td> <?php if ($eva = 0)
+ echo "Male" ;
+if ($eva=1)
+echo "Female" ?> </td>
 </tr><tr>
 <td>HOH age:</td>
-<td>$age</td>
+<td><?php echo($age) ?> </td>
 </tr>
 <form method="post" name="add">
 <tr>
@@ -204,7 +225,5 @@ echo <<< _END
 </form>
 <p><a href="add.php">Looks good! I want to add another household.</a></p>
 <p><a href="delete.php?id=$id">No, I want to delete this entry and start over.</a><p>
-_END;
-?>
 </body>
 </html>
