@@ -25,6 +25,8 @@ if ( isset($_SESSION['success']) ) {
 
 $result = mysql_query("SELECT name, description, startdate, enddate, id FROM projects ORDER BY name");
 ?>
+<h2><a href="addproject.php">Add New Project</a></h2>
+
 <table><tr>
 <td><strong>Project Name</strong></td>
 <td><strong>Description</strong></td>
@@ -61,6 +63,5 @@ if ( isset($_SESSION['success']) ) {
     unset($_SESSION['success']);
 }
 ?>
-<h2><a href="addproject.php">Add New Project</a></h2>
 </body>
 </html>

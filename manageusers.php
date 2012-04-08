@@ -24,6 +24,8 @@ if ( isset($_SESSION['success']) ) {
 
 $result = mysql_query("SELECT name, lname, email, password, role, id FROM users");
 ?>
+<h2><a href="adduser.php">Add New User</a></h2>
+
 <table><tr>
 <td><strong>First Name</strong></td>
 <td><strong>Last Name</strong></td>
@@ -60,7 +62,6 @@ if ( isset($_SESSION['success']) ) {
     unset($_SESSION['success']);
 }
 ?>
-<h2><a href="adduser.php">Add New User</a></h2>
 <p>&nbsp;</p>
 </body>
 </html>
