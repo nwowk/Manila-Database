@@ -4,6 +4,13 @@ session_start();
 require 'includes/guardgeneral.ssi';
 
 //This part checks to see whether the form has been filled.
+	$userid = $_SESSION ['name'];
+	$sqlthree = "SELECT id FROM users
+			WHERE name = '$userid'";
+	$resultthree = mysql_query ($sqlthree);
+	$rolesetthree = mysql_fetch_row($resultthree);
+	$_SESSION ['userid'] = $rolesetthree[0];
+
 if ( isset($_POST['project_id']) 
      && isset($_POST['district'])
      && isset($_POST['buildingtype_id']) 
@@ -46,15 +53,18 @@ if ( isset($_POST['project_id'])
    $gen = mysql_real_escape_string($_POST['HOHgender']);
    $age = mysql_real_escape_string($_POST['HOHage']);
    $dte = date("Y-m-d");
+   $usr = $_SESSION['userid'];
+
    $sql = "INSERT INTO households (project_id, district, lat, lon, buildingtype_id, stories, 
 	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
-	      water_id, contact_id, HOHgender, HOHage, date) VALUES
+	      water_id, contact_id, HOHgender, HOHage, date, users_id) VALUES
 	      ('$pid', '$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
-	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age', '$dte')";
+	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age', '$dte', '$usr')";
    mysql_query($sql);
    $_SESSION['success'] = 'Record Added';
    $id = mysql_insert_id();
    $_SESSION ['lasthhld'] = $id;
+   //echo $sql;
    header( 'Location: verify.php' ) ;
    return;
 }

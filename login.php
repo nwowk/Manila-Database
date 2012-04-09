@@ -15,7 +15,7 @@ if ( isset($_POST['email']) && isset ($_POST['password']) )
 	$resulttwo = mysql_query ($sqltwo);
 	$roleset = mysql_fetch_row($resulttwo);
 	$_SESSION ['role'] = $roleset[0];
-
+	
 	if ( $result === FALSE )
 	{
 		echo "<p>Login incorrect.</p>\n";
