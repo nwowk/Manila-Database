@@ -28,7 +28,8 @@ If you are satisfied with the entry, click on "Update entry" and the information
 
 
 <h4><a href="search.php">Search</a></h4>
-<p>The query tool tabulates entered household data by districts and categories.</p>
+<p>You can summarize household data by district here. You can choose one district at a time, all the districts for a project, or get all of the districts. You can also export these tables to a .csv file, which can be opened in Excel, OpenOffice, or GIS programs.</p>
+<p></p>
 
 <h4><a href="manageprojects.php">Manage Projects</a></h4>
 
