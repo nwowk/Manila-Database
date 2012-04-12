@@ -47,9 +47,9 @@ $fields="District</th>
 		<th>Light materials</th>
 		<th>Metal roof</th>
 		<th>Mixed roof</th>
-		<th>Under 6</th>
-		<th>Over 60</th>
-		<th>Dependents</th>
+		<th>Under 6*</th>
+		<th>Over 60*</th>
+		<th>Dependents*</th>
 		<th>Income 1</th>
 		<th>Income 2</th>
 		<th>Income 3</th>
@@ -297,12 +297,13 @@ while($row = mysql_fetch_array($result)){
 }//closes while loop that moves through query results rows
 }//ends the "one project" loop. ------------------------------------------------------------------------------------------
 ?>
-<br />
+<p>
 <form name="export" action="export.php" method="post">
     <button type="submit" value="Export table to CSV">Export table to CSV</button> 
     <input type="hidden" value="<? echo $csv_output; ?>" name="csv_output">
-</form>
-<br/>
+</form></p>
+<p>*Percentages marked with this symbol represent percent of district <em>population</em>.</p>
+<p>The other percentages represent percent of district <em>households</em>.</p>
 
 </body>
 </html>

@@ -40,9 +40,8 @@ require 'includes/header.ssi';
 <tr><td>Project Name:</td><td> <input type="text" name="name"/></td></tr>
 <tr><td>Project Description:</td><td> <textarea type="text" name="description" rows="6"></textarea></td></tr>
 <tr><td>Start Date:</td><td> <input type="text" name="startdate"/><font color="gray"> YYYY-MM-DD</font></td></tr>
-<tr><td>End Date:</td><td> <input type="text" name="enddate"/><font color="gray"> YYYY-MM-DD</font></td>
-</td>
-	<td align="right"><input type="submit" value="Add New"/>&nbsp;&nbsp;&nbsp;<a href="manageprojects.php">Cancel</a></td></tr>
+<tr><td>End Date:</td><td> <input type="text" name="enddate"/><font color="gray"> YYYY-MM-DD</font></td></tr>
+<tr><td align="right"><a href="manageprojects.php">Cancel</a></td><td><input type="submit" value="Add New"/>&nbsp;&nbsp;&nbsp;</td></tr>
 </table>
 </form>
 

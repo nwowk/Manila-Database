@@ -7,7 +7,7 @@ background: #c9de96
 
 body{
 	background: #FFF; 
-	font: "arial", "verdana", "helvetica", "times new roman";
+	font-family: arial, verdana, "times new roman";
 	width: 785px;
 	position: relative;
 	margin-left: auto;

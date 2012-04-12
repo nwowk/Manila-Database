@@ -66,9 +66,9 @@ $fields="District</th>
 		<th>Light materials</th>
 		<th>Metal roof</th>
 		<th>Mixed roof</th>
-		<th>Under 6</th>
-		<th>Over 60</th>
-		<th>Dependents</th>
+		<th>Under 6*</th>
+		<th>Over 60*</th>
+		<th>Dependents*</th>
 		<th>Income 1</th>
 		<th>Income 2</th>
 		<th>Income 3</th>
@@ -214,6 +214,7 @@ if ( isset($_SESSION['success']) ) {
 <tr><td>
 <p>Choose your search below. You may search the database only in aggregate form, that is you will see summary 
 statistics for survey answers aggregated by district. You may limit your results to a particular district or profile. </p>
+<p>View a guide for the summary data <a href="images/Summary_Data_Guide.pdf" target="_blank">here</a>. You will need <a href="http://get.adobe.com/reader/" target="_blank">Adobe Reader </a> to view this file.</p>
 <form action = "result.php" target ="_blank" method="post">
 <p>For which district would you like a profile?
 <input type="text" name="district">
@@ -221,7 +222,7 @@ statistics for survey answers aggregated by district. You may limit your results
 </form>
 <form action = "result.php" target ="_blank" method="post">
 <p>For which project would you like a profile?
-<select name = 'project' id = 'project>
+<select name = 'project' id = 'project'>
 <?php
     $p_result = mysql_query("SELECT name, id FROM projects ORDER BY name");
     while ( $row = mysql_fetch_row($p_result) ) {

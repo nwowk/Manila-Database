@@ -30,8 +30,8 @@ $result = mysql_query("SELECT name, description, startdate, enddate, id FROM pro
 <table><tr>
 <td><strong>Project Name</strong></td>
 <td><strong>Description</strong></td>
-<td><strong>Start Date</strong></td>
-<td><strong>End Date</strong></td>
+<td width="90"><strong>Start Date</strong></td>
+<td width="90"><strong>End Date</strong></td>
 <td><strong>Edit</strong></td>
 <td><strong>Delete</strong></td>
 </tr>

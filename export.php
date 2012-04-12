@@ -6,7 +6,7 @@
 */
 
 //First we'll generate an output variable called out. It'll have all of our text for the CSV file.
-$out ="District, Households, Population, AVG Household Size, Light Materials, Semi-Concrete, Concrete, AVG Stories, No Foundation, Slab, Bamboo, Wood, Steel Platform, Cinder blocks, Other foundation, Concrete Roof, Light materials, Metal roof, Mixed roof, Under 6, Over 60, Dependents, Income 1, Income 2, Income 3, Income 4, Income 5, Income N/A, Evac plan, Training, Garbage Collector, Burning, Dumping public, Dumping water, Well, Faucet, River, Pipe, Seller, Other water, SMS, email, radio, TV, Female HoH, AVG HoH Age"."\n";
+$out ="District, Households, Population, AVG_Household_Size, Light_Materials, Semi_Concrete, Concrete, AVG_Stories, No_Foundation, Slab, Bamboo, Wood, Steel_Platform, Cinder_blocks, Other_foundation, Concrete_Roof, Light_materials, Metal_roof, Mixed_roof, Under_6, Over_60, Dependents, Income_1, Income_2, Income_3, Income_4, Income_5, Income_NA, Evac_plan, Training, Garbage_Collector, Burning, Dumping_public, Dumping_water, Well, Faucet, River, Pipe, Seller, Other_water, SMS, email, radio, TV, Female_HoH, AVG_HoH Age"."\n";
 //Next we'll check to see if our variables posted and if they did we'll simply append them to out.
 
 if (isset($_POST['csv_output'])) {
