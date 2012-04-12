@@ -21,29 +21,37 @@ require 'includes/header.ssi';
     </script>
     <script type="text/javascript">
       function initialize() {
-        var myOptions = {
-          center: new google.maps.LatLng(14.671171,121.110851),
-          zoom: 16,
-          mapTypeId: google.maps.MapTypeId.HYBRID
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
-		var layer = new google.maps.FusionTablesLayer({
+		var element = document.getElementById("map_canvas");
+            var mapTypeIds = [];
+            for(var type in google.maps.MapTypeId) {
+                mapTypeIds.push(google.maps.MapTypeId[type]);
+            }
+            mapTypeIds.push("OSM");
+ 
+            var map = new google.maps.Map(element, {
+                center: new google.maps.LatLng(14.671171,121.110851),
+                zoom: 16,
+                mapTypeId: "OSM",
+                mapTypeControlOptions: {
+                    mapTypeIds: mapTypeIds
+                }
+            });
+ 
+            map.mapTypes.set("OSM", new google.maps.ImageMapType({
+                getTileUrl: function(coord, zoom) {
+                    return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+                },
+                tileSize: new google.maps.Size(256, 256),
+                name: "OpenStreetMap",
+                maxZoom: 18
+            }));
+					var layer = new google.maps.FusionTablesLayer({
 			query: {
 				select: 'geometry',
 				from: '3024596'
 			}
 		});
 		layer.setMap(map);	
-      }
-
-      function validateForm() {
-	var a=document.forms["add"]["district"].value;
-	if (a==null || a=="") {
-		alert("First district id must be filled out");
-  		return false;
-  	}
-	return true;
 	}
     </script> </div>
 <?php //prepare the CSV table for the "get all districts" query. ---------------------------------------------------------
