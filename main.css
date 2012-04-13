@@ -176,6 +176,18 @@ table a:hover{
 #add_district_errorloc{
 	color: red;
 	}
+#add_buildingtype_id_errorloc{
+	color: red;
+	}
+#add_stories_errorloc{
+	color: red;
+	}
+#add_raised_id_errorloc{
+	color: red;
+	}
+#add_roof_id_errorloc{
+	color: red;
+	}
 #add_HHLDsize_errorloc{
 	color: red;
 	}
@@ -188,10 +200,28 @@ table a:hover{
 #add_dependents_errorloc{
 	color: red;
 	}
-#add_HOHage_errorloc{
+#add_income_id_errorloc{
 	color: red;
 	}
-#add_project_id_errorloc{
+#add_evacuation_errorloc{
+	color: red;
+	}
+#add_training_errorloc{
+	color: red;
+	}
+#add_waste_id_errorloc{
+	color: red;
+	}
+#add_water_id_errorloc{
+	color: red;
+	}
+#add_contact_id_errorloc{
+	color: red;
+	}
+#add_HOHgender_errorloc{
+	color: red;
+	}
+#add_HOHage_errorloc{
 	color: red;
 	}
 #adduser_role_errorloc{
