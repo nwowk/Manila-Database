@@ -159,15 +159,16 @@ require 'includes/header.ssi';
 <tr><td>Longitude (optional):</td>
 <td><input type="text" name="lon"></td></tr>
 <tr><td>What is the building type? Choose one from the following list:</td>
-<td>
+<td><div id='add_buildingtype_id_errorloc' class='error_strings'></div>
 <input type="radio" name="buildingtype_id" value="1">Light materials</br>
 <input type="radio" name="buildingtype_id" value="2">Semi-concrete</br>
 <input type="radio" name="buildingtype_id" value="3">All concrete</br>
 </td></tr>
 <tr><td>How many stories does the building have?</td>
-<td><input type="text" name="stories"></td></tr>
+<td><div id='add_stories_errorloc' class='error_strings'></div>
+<input type="text" name="stories"></td></tr>
 <tr><td>Has the building been elevated or raised up from the ground?</td>
-<td>
+<td><div id='add_raised_id_errorloc' class='error_strings'></div>
 <input type="radio" name="raised_id" value="1">No</br>
 <input type="radio" name="raised_id" value="2">Yes, with a concrete slab</br>
 <input type="radio" name="raised_id" value="3">Yes, with bamboo</br>
@@ -177,7 +178,7 @@ require 'includes/header.ssi';
 <input type="radio" name="raised_id" value="7">Yes, with something else not listed here</br>
 </td></tr>
 <tr><td>What is the roof made of?</td>
-<td>
+<td><div id='add_roof_id_errorloc' class='error_strings'></div>
 <input type="radio" name="roof_id" value="1">Concrete</br>
 <input type="radio" name="roof_id" value="2">Light Materials</br>
 <input type="radio" name="roof_id" value="3">Metal</br>
@@ -196,7 +197,7 @@ require 'includes/header.ssi';
 <td><div id='add_dependents_errorloc' class='error_strings'></div>
 <input type="text" name="dependents"></td></tr>
 <tr><td>What is your estimated household income PER MONTH?</td>
-<td>
+<td><div id='add_income_id_errorloc' class='error_strings'></div>
 <input type="radio" name="income_id" value="1">under 2,000 pesos</br>
 <input type="radio" name="income_id" value="2">2,001-3,000 pesos</br>
 <input type="radio" name="income_id" value="3">3,001-5,000 pesos</br>
@@ -205,24 +206,24 @@ require 'includes/header.ssi';
 <input type="radio" name="income_id" value="6">Don't know or no answer</br>
 </td></tr>
 <tr><td>Are you aware of whether your community organization has a disaster evacuation plan?</td>
-<td>
+<td><div id='add_evacuation_errorloc' class='error_strings'></div>
 <input type="radio" name="evacuation" value="1">Yes, I am aware</br>
 <input type="radio" name="evacuation" value="0">No, I do not know</br>
 </td></tr>
 <tr><td>Have you ever participated in any disaster preparation training?</td>
-<td>
+<td><div id='add_training_errorloc' class='error_strings'></div>
 <input type="radio" name="training" value="1">Yes</br>
 <input type="radio" name="training" value="0">No</br>
 </td></tr>
 <tr><td>How does your household dispose of waste?</td>
-<td>
+<td><div id='add_waste_id_errorloc' class='error_strings'></div>
 <input type="radio" name="waste_id" value="1">garbage collector</br>
 <input type="radio" name="waste_id" value="2">burning</br>
 <input type="radio" name="waste_id" value="3">dumping in a public place</br>
 <input type="radio" name="waste_id" value="4">dumping in water or vicinity</br>
 </td></tr>
 <tr><td>What is your primary source of water?</td>
-<td>
+<td><div id='add_water_id_errorloc' class='error_strings'></div>
 <input type="radio" name="water_id" value="1">communal well</br>
 <input type="radio" name="water_id" value="2">private faucet</br>
 <input type="radio" name="water_id" value="3">river/stream</br>
@@ -231,14 +232,14 @@ require 'includes/header.ssi';
 <input type="radio" name="water_id" value="6">other</br>
 </td></tr>
 <tr><td>What is the best way to get your attention during a crisis?</td>
-<td>
+<td><div id='add_contact_id_errorloc' class='error_strings'></div>
 <input type="radio" name="contact_id" value="1">sms/text</br>
 <input type="radio" name="contact_id" value="2">email/facebook</br>
 <input type="radio" name="contact_id" value="3">radio</br>
 <input type="radio" name="contact_id" value="4">TV</br>
 </td></tr>
 <tr><td>What is the gender of the head of household?</td>
-<td>
+<td><div id='add_HOHgender_errorloc' class='error_strings'></div>
 <input type="radio" name="HOHgender" value="0">male</br>
 <input type="radio" name="HOHgender" value="1">female</br>
 </td></tr>
@@ -252,14 +253,40 @@ require 'includes/header.ssi';
     var frmvalidator = new Validator("add");
  frmvalidator.EnableOnPageErrorDisplay();
  frmvalidator.EnableMsgsTogether();
-
- frmvalidator.addValidation("project_id","numeric","Project number must be a number"); 
+  
  frmvalidator.addValidation("district","numeric","District ID must be a number");
+ frmvalidator.addValidation("district","req","This field is required");
+ 
+ frmvalidator.addValidation("buildingtype_id","selone_radio","Please select an option");
+ 
+ frmvalidator.addValidation("stories","numeric","This field must be a number");
+ frmvalidator.addValidation("stories","req","This field is required");
+ 
+ frmvalidator.addValidation("raised_id","selone_radio","Please select an option")
+ frmvalidator.addValidation("roof_id","selone_radio","Please select an option");
+ 
  frmvalidator.addValidation("HHLDsize","numeric","This field must be a number");
+ frmvalidator.addValidation("HHLDsize","req","This field is required");
+ 
  frmvalidator.addValidation("young","numeric","This field must be a number");
+ frmvalidator.addValidation("young","req","This field is required");
+ 
  frmvalidator.addValidation("old","numeric","This field must be a number");
+ frmvalidator.addValidation("old","req","This field is required");
+ 
  frmvalidator.addValidation("dependents","numeric","This field must be a number");
+ frmvalidator.addValidation("dependents","req","This field is required");
+ 
+ frmvalidator.addValidation("income_id","selone_radio","Please select an option");
+ frmvalidator.addValidation("evacuation","selone_radio","Please select an option");
+ frmvalidator.addValidation("training","selone_radio","Please select an option");
+ frmvalidator.addValidation("waste_id","selone_radio","Please select an option");
+ frmvalidator.addValidation("water_id","selone_radio","Please select an option");
+ frmvalidator.addValidation("contact_id","selone_radio","Please select an option");
+ frmvalidator.addValidation("HOHgender","selone_radio","Please select an option");
+ 
  frmvalidator.addValidation("HOHage","numeric","Age must be a number");
+ frmvalidator.addValidation("HOHage","req","This field is required");
 
 </script>
 </td>
