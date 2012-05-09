@@ -3,86 +3,14 @@ require_once "db.php";
 session_start();
 require 'includes/guardgeneral.ssi';
 
-//This part checks to see whether the form has been filled.
 $id = mysql_real_escape_string($_SESSION['lasthhld']);
-/*if ( isset($_POST['btnupdate']) 
-     && isset($_POST['project_id'])
-     && isset($_POST['district']) 
-     && isset($_POST['lat']) 
-     && isset($_POST['lon']) 
-     && isset($_POST['buildingtype_id']) 
-     && isset($_POST['stories'])
-     && isset($_POST['raised_id'])
-     && isset($_POST['roof_id'])
-     && isset($_POST['HHLDsize'])
-     && isset($_POST['young'])   
-     && isset($_POST['old']) 
-     && isset($_POST['dependents'])  
-     && isset($_POST['income_id']) 
-     && isset($_POST['evacuation'])
-     && isset($_POST['training']) 
-     && isset($_POST['waste_id']) 
-     && isset($_POST['water_id']) 
-     && isset($_POST['contact_id']) 
-     && isset($_POST['HOHgender']) 
-//   && isset($_POST['users_id']) 
-     && isset($_POST['HOHage'])
-     && isset($_POST['date'])
-     )     
-{
 
-//This portion adds the user-entered values into the Households table
-   $pid = mysql_real_escape_string($_POST['project_id']);
-   $dis = mysql_real_escape_string($_POST['district']);
-   $lat = mysql_real_escape_string($_POST['lat']);
-   $lon = mysql_real_escape_string($_POST['lon']);
-   $bld = mysql_real_escape_string($_POST['buildingtype_id']);
-   $sto = mysql_real_escape_string($_POST['stories']);
-   $rsd = mysql_real_escape_string($_POST['raised_id']);
-   $rof = mysql_real_escape_string($_POST['roof_id']);
-   $siz = mysql_real_escape_string($_POST['HHLDsize']);
-   $yng = mysql_real_escape_string($_POST['young']);
-   $old = mysql_real_escape_string($_POST['old']);
-   $dep = mysql_real_escape_string($_POST['dependents']);
-   $inc = mysql_real_escape_string($_POST['income_id']);
-   $eva = mysql_real_escape_string($_POST['evacuation']);
-   $tra = mysql_real_escape_string($_POST['training']);
-   $was = mysql_real_escape_string($_POST['waste_id']);
-   $wtr = mysql_real_escape_string($_POST['water_id']);
-   $con = mysql_real_escape_string($_POST['contact_id']);
-   $gen = mysql_real_escape_string($_POST['HOHgender']);
-   $age = mysql_real_escape_string($_POST['HOHage']);
-// $usr = mysql_real_escape_string($_POST['user_id']);
-   $dte = date("Y-m-d");
-  
-   $sql = "UPDATE households 
-		   SET project_id='$pid', district='$dis', lat='$lat', lon='$lon', 
-		   buildingtype_id='$bld', stories='$sto', raised_id='$rsd', roof_id='$rof', 
-		   HHLDsize='$siz', young='$yng', old='$old', dependents='$dep', 
-		   income_id='$inc', evacuation='$eva', training='$tra', waste_id='$was', 
-		   water_id='$wtr', contact_id='$con', HOHgender='$gen', HOHage='$age', date='$dte' 
-		   where id=$id";
-	  
-	  /* (project_id, district, lat, lon, buildingtype_id, stories, 
-	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
-	      water_id, contact_id, HOHgender, HOHage, date) VALUES 
-	      ('$pid','$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
-	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age','$dte')";
-	       
-   mysql_query($sql);
-   $_SESSION['success'] = 'Record Updated'; 
-//   echo  "here..."; 
-   $_SESSION ['lasthhld'] = $id;
-   header( 'Location: verify.php' ) ;
-   return;	
-}
-
-*/
 $query= "SELECT projects.name, households.district, households.lat, households.lon, 
           buildingtype.value, households.stories, raised.value, roof.value, households.HHLDsize, 
           households.young, households.old, households.dependents, income.value, households.evacuation, 
           households.training, waste.value, water.value, contact.value, households.HOHgender, 
-          households.HOHage FROM households JOIN projects JOIN buildingtype JOIN raised JOIN roof JOIN income
+          households.HOHage, households.familyname, households.zone FROM households 
+	  JOIN projects JOIN buildingtype JOIN raised JOIN roof JOIN income
           JOIN waste JOIN water JOIN contact on households.project_id = projects.id and households.buildingtype_id =    
           buildingtype.id and
           households.raised_id = raised.id and households.roof_id = roof.id and households.income_id = 
@@ -91,6 +19,7 @@ $query= "SELECT projects.name, households.district, households.lat, households.l
 $result = mysql_query($query);
 if ( $result == FALSE ) {
     $_SESSION['error'] = 'Bad value for id';
+    header( 'Location: add.php' ) ;
     return;    
 }
 $row = mysql_fetch_row($result);
@@ -115,6 +44,8 @@ $wtr = htmlentities($row[16]);
 $con = htmlentities($row[17]);
 $gen = htmlentities($row[18]);
 $age = htmlentities($row[19]);
+$name = htmlentities($row[20]);
+$zone = htmlentities($row[21]);
 
 require 'includes/header.ssi';
 ?>
@@ -144,11 +75,17 @@ echo <<< _END
 <td>District:</td>
 <td>$dis</td>
 </tr><tr>
+<td>Zone:</td>
+<td>$zone</td>
+</tr><tr>
 <td>Lat:</td>
 <td>$lat</td>
 </tr><tr>
 <td>Lon:</td>
 <td>$lon</td>
+</tr><tr>
+<td>Family Name:</td>
+<td>$name</td>
 </tr><tr>
 <td>Building Type:</td>
 <td>$bld</td>

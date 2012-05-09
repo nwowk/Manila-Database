@@ -11,6 +11,15 @@ require 'includes/guardgeneral.ssi';
 	$rolesetthree = mysql_fetch_row($resultthree);
 	$_SESSION ['userid'] = $rolesetthree[0];
 
+if ( isset($_SESSION['error']) ) {
+    echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
+    unset($_SESSION['error']);
+}
+if ( isset($_SESSION['success']) ) {
+    echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
+    unset($_SESSION['success']);
+}
+
 if ( isset($_POST['project_id']) 
      && isset($_POST['district'])
      && isset($_POST['buildingtype_id']) 
@@ -34,6 +43,7 @@ if ( isset($_POST['project_id'])
 //This portion adds the user-entered values into the Households table
    $pid = mysql_real_escape_string($_POST['project_id']);
    $dis = mysql_real_escape_string($_POST['district']);
+   $zon = mysql_real_escape_string($_POST['zone']);
    $lat = mysql_real_escape_string($_POST['lat']);
    $lon = mysql_real_escape_string($_POST['lon']);
    $bld = mysql_real_escape_string($_POST['buildingtype_id']);
@@ -52,14 +62,15 @@ if ( isset($_POST['project_id'])
    $con = mysql_real_escape_string($_POST['contact_id']);
    $gen = mysql_real_escape_string($_POST['HOHgender']);
    $age = mysql_real_escape_string($_POST['HOHage']);
+   $name = mysql_real_escape_string($_POST['familyname']);
    $dte = date("Y-m-d");
    $usr = $_SESSION['userid'];
 
-   $sql = "INSERT INTO households (project_id, district, lat, lon, buildingtype_id, stories, 
+   $sql = "INSERT INTO households (project_id, district, zone, lat, lon, buildingtype_id, stories, 
 	      raised_id, roof_id, HHLDsize, young, old, dependents, income_id, evacuation, training, waste_id, 
-	      water_id, contact_id, HOHgender, HOHage, date, users_id) VALUES
-	      ('$pid', '$dis', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
-	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age', '$dte', '$usr')";
+	      water_id, contact_id, HOHgender, HOHage, date, users_id, familyname) VALUES
+	      ('$pid', '$dis', '$zon', '$lat', '$lon', '$bld', '$sto', '$rsd', '$rof', '$siz', '$yng', 
+	       '$old', '$dep', '$inc', '$eva', '$tra', '$was', '$wtr', '$con', '$gen', '$age', '$dte', '$usr','$name')";
    mysql_query($sql);
    $_SESSION['success'] = 'Record Added';
    $id = mysql_insert_id();
@@ -154,10 +165,14 @@ require 'includes/header.ssi';
 <td width="50%">What is the district ID?</td>
 <td width="50%"><div id='add_district_errorloc' class='error_strings'></div>
 <input type="text" name="district"></td></tr> 
+<tr><td>What is the zone?</td>
+<td><input type="text" name="zone"></p></td></tr>
 <tr><td>Latitude (optional):</td>
 <td><input type="text" name="lat"></p></td></tr>
 <tr><td>Longitude (optional):</td>
 <td><input type="text" name="lon"></td></tr>
+<tr><td>Family Name:</td>
+<td><input type="text" name="familyname"></td></tr>
 <tr><td>What is the building type? Choose one from the following list:</td>
 <td><div id='add_buildingtype_id_errorloc' class='error_strings'></div>
 <input type="radio" name="buildingtype_id" value="1">Light materials</br>

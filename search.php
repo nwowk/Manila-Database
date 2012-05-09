@@ -224,12 +224,16 @@ if ( isset($_SESSION['success']) ) {
 statistics for survey answers aggregated by district. You may limit your results to a particular district or profile. </p>
 <p>View a guide for the summary data <a href="images/Summary_Data_Guide.pdf" target="_blank">here</a>. You will need <a href="http://get.adobe.com/reader/" target="_blank">Adobe Reader </a> to view this file.</p>
 <form action = "result.php" target ="_blank" method="post">
-<p>For which district would you like a profile?
-<input type="text" name="district">
-<input type="submit" value="Go"/>
+<p>Get summary for 
+<select name ='geography' id = 'geography'>
+<option value ='zone'>zone</option>
+<option value ='district'>district</option>
+</select>
+<input type="text" name="geovalue">
+<input type="submit" value="Go"/>.
 </form>
 <form action = "result.php" target ="_blank" method="post">
-<p>For which project would you like a profile?
+<p>Get summary for project
 <select name = 'project' id = 'project'>
 <?php
     $p_result = mysql_query("SELECT name, id FROM projects ORDER BY name");
@@ -239,6 +243,15 @@ statistics for survey answers aggregated by district. You may limit your results
 ?>
 </select>
 <input type="submit" value="Go"/>
+</form>
+<form action = "result_households.php" target ="_blank" method="post">
+<p>Get family list for 
+<select name ='geography' id = 'geography'>
+<option value ='zone'>zone</option>
+<option value ='district'>district</option>
+</select>
+<input type="text" name="geovalue">
+<input type="submit" value="Go"/>.
 </form>
 <br>
 <p> Alternatively, you may view the entire database, aggregated by district. Due to the potential size of this file, you must download this information in the form of a <em>.csv</em> file, which can be opened in many spreadsheet programs such as Excel. Open Office is an open-source, free alternative application set that includes a spreadsheet program which can also open these files. You can download Open Office <a href="http://www.openoffice.org/download/index.html" target="_blank">here</a>. </p>
