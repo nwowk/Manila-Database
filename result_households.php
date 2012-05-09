@@ -56,7 +56,7 @@ $tableheader="<table border='1'><tr>
 		<th>$fields</th>
 		</tr>";
 $csv_output="";
-// Begin district/zone family list query. -------------------------------------------------------------------------------------------------
+// Begin district/zone/project family list query. -------------------------------------------------------------------------------------------------
 if (isset($_POST['geography']) && isset($_POST['geovalue'])) {
 	$geography = mysql_real_escape_string($_POST['geography']);
 	$geovalue = mysql_real_escape_string($_POST['geovalue']);
@@ -105,11 +105,12 @@ while($row = mysql_fetch_array($result)){
 	"</td><td>". htmlentities($row[19]);		//HOHage
 	echo "</td></tr>";
 //add the table results to a .csv file output variable
-	$csv_output.= str_replace("</td><td>",", ",$resultrow)."\n";
+	$csv_output.= str_replace(",","",$resultrow)."\n";	
+	$csv_output = str_replace("</td><td>",", ",$csv_output);
 
 }//closes while loop that moves through query results rows
 }//ends the "one district" loop. --------------------------------------------------------------------------------------------
-// Begin project query. -------------------------------------------------------------------------------------------------
+/* Begin project query. -------------------------------------------------------------------------------------------------
 if ( isset($_POST['project'])) {
 	$project = mysql_real_escape_string($_POST['project']);
 	$query = "SELECT district, zone, COUNT(1) as 'households', 
@@ -218,12 +219,14 @@ while($row = mysql_fetch_array($result)){
 
 }//closes while loop that moves through query results rows
 }//ends the "one project" loop. ------------------------------------------------------------------------------------------
+*/
 ?>
 <p>
-<form name="export" action="export.php" method="post">
+<form name="export" action="export_households.php" method="post">
     <button type="submit" value="Export table to CSV">Export table to CSV</button> 
     <input type="hidden" value="<? echo $csv_output; ?>" name="csv_output">
 </form></p>
-
+<p>
+Note: variables <strong>Evacuation</strong> and <strong>Training</strong> have values 0 for "No" and 1 for "Yes."  <strong>HOHgender</strong> is 0 for "Male" and 1 for "Female." </p>
 </body>
 </html>

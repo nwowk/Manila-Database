@@ -220,8 +220,7 @@ if ( isset($_SESSION['success']) ) {
 ?>
 <table width="100%" border="0" class="float">
 <tr><td>
-<p>Choose your search below. You may search the database only in aggregate form, that is you will see summary 
-statistics for survey answers aggregated by district. You may limit your results to a particular district or profile. </p>
+<p>Choose your search below. </p>
 <p>View a guide for the summary data <a href="images/Summary_Data_Guide.pdf" target="_blank">here</a>. You will need <a href="http://get.adobe.com/reader/" target="_blank">Adobe Reader </a> to view this file.</p>
 <form action = "result.php" target ="_blank" method="post">
 <p>Get summary for 
@@ -230,11 +229,11 @@ statistics for survey answers aggregated by district. You may limit your results
 <option value ='district'>district</option>
 </select>
 <input type="text" name="geovalue">
-<input type="submit" value="Go"/>.
+<input type="submit" value="Go"/>
 </form>
 <form action = "result.php" target ="_blank" method="post">
 <p>Get summary for project
-<select name = 'project' id = 'project'>
+<select name = 'geovalue' id = 'geovalue'>
 <?php
     $p_result = mysql_query("SELECT name, id FROM projects ORDER BY name");
     while ( $row = mysql_fetch_row($p_result) ) {
@@ -242,6 +241,7 @@ statistics for survey answers aggregated by district. You may limit your results
     }
 ?>
 </select>
+<input type="hidden" name="geography" value="project_id">
 <input type="submit" value="Go"/>
 </form>
 <form action = "result_households.php" target ="_blank" method="post">
@@ -251,10 +251,24 @@ statistics for survey answers aggregated by district. You may limit your results
 <option value ='district'>district</option>
 </select>
 <input type="text" name="geovalue">
-<input type="submit" value="Go"/>.
+<input type="submit" value="Go"/>
+</form>
+<form action = "result_households.php" target ="_blank" method="post">
+<p>Get family list for project 
+<select name = 'geovalue' id = 'geovalue'>
+<?php
+    $p_result = mysql_query("SELECT name, id FROM projects ORDER BY name");
+    while ( $row = mysql_fetch_row($p_result) ) {
+	echo ("<option value = '" . $row['1'] . "'>" . $row['0'] . "</option>");
+    }
+?>
+</select>
+<input type="hidden" name="geography" value="project_id">
+<input type="submit" value="Go"/>
 </form>
 <br>
-<p> Alternatively, you may view the entire database, aggregated by district. Due to the potential size of this file, you must download this information in the form of a <em>.csv</em> file, which can be opened in many spreadsheet programs such as Excel. Open Office is an open-source, free alternative application set that includes a spreadsheet program which can also open these files. You can download Open Office <a href="http://www.openoffice.org/download/index.html" target="_blank">here</a>. </p>
+<p> Get a summary of all districts in a <em>.csv</em> file, which can be opened in many spreadsheet programs such as Excel.
+</p>
 <form name="export" action="export.php" method="post">
     <button type="submit" value="getall">Get all districts in a .csv file</button> 
     <input type="hidden" value="<? echo $csv_output; ?>" name="csv_output">
@@ -264,6 +278,6 @@ statistics for survey answers aggregated by district. You may limit your results
 </td></tr></table>
 <h1>Analysis</h1>
 <p>Download the district grid shapefile <a href="images/districtgrid_.zip">here</a>. You can open this file with ArcGIS or an open-source GIS such as <a href="http://hub.qgis.org/projects/quantum-gis/wiki/Download">QGIS</a>. </p>
-<p>Download this <a href="images/grid.kmz">kmz file</a> of the grid, which can be opened in Google Earth.
+<p>Download this <a href="images/districtgrid.kml.zip">kml file</a> of the grid, which can be opened in Google Earth.
 </body>
 </html>

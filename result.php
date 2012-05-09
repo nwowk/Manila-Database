@@ -82,11 +82,11 @@ $tableheader="<table border='1'><tr>
 		<th>$fields</th>
 		</tr>";
 $csv_output="";
-// Begin district/zone query. -------------------------------------------------------------------------------------------------
+// Begin district/zone/project query. -------------------------------------------------------------------------------------------------
 if (isset($_POST['geography']) && isset($_POST['geovalue'])) {
 	$geography = mysql_real_escape_string($_POST['geography']);
 	$geovalue = mysql_real_escape_string($_POST['geovalue']);
-	$query = "SELECT district, zone, COUNT(1) as 'households', 
+	$query = "SELECT district, zone, project_id, COUNT(1) as 'households', 
 		ROUND(AVG(stories),1) AS 'avgstories',
 		SUM(HHLDsize) as 'population', ROUND(AVG(HHLDsize),1) AS 'avghhldsize',
 		SUM(CASE buildingtype_id WHEN 1 THEN '1' ELSE '0' END) AS 'bt1',
@@ -192,7 +192,7 @@ while($row = mysql_fetch_array($result)){
 
 }//closes while loop that moves through query results rows
 }//ends the "one district" loop. --------------------------------------------------------------------------------------------
-// Begin project query. -------------------------------------------------------------------------------------------------
+/* Begin project query. -------------------------------------------------------------------------------------------------
 if ( isset($_POST['project'])) {
 	$project = mysql_real_escape_string($_POST['project']);
 	$query = "SELECT district, zone, COUNT(1) as 'households', 
@@ -301,6 +301,8 @@ while($row = mysql_fetch_array($result)){
 
 }//closes while loop that moves through query results rows
 }//ends the "one project" loop. ------------------------------------------------------------------------------------------
+*/
+if ($geography=='project_id') {$geography = 'project';}
 ?>
 <p>
 <form name="export" action="export.php" method="post">
