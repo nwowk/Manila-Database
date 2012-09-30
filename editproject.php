@@ -1,7 +1,7 @@
 <?php
 require_once "db.php";
 session_start();
-require 'includes/guard3.ssi';
+require 'includes/guard23.ssi';
 
 //-updates the project data in the database with the values from the user-----------------------------------------
 if ( isset($_POST['name']) 

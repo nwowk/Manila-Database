@@ -1,7 +1,7 @@
 <?php
 require_once "db.php";
 session_start();
-require 'includes/guard3.ssi';
+require 'includes/guard23.ssi';
 
 //deletes the requested project from the database-------------------------------------------
 if ( isset($_POST['delete']) && isset($_POST['id']) ) {
