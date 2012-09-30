@@ -4,6 +4,7 @@ session_start();
 require 'includes/guard23.ssi';
 require 'includes/header.ssi';
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -13,7 +14,6 @@ require 'includes/header.ssi';
 <h1>Manage Projects</h1>
 
 <?php
-
 if ( isset($_SESSION['error']) ) {
     echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
     unset($_SESSION['error']);
